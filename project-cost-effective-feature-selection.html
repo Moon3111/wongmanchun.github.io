@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cost-Aware Feature Selection Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            max-width: 760px;
+            opacity: 0.95;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            background-color: rgba(255,255,255,0.18);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .section p,
+        .section ul {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            list-style: disc inside;
+            gap: 0.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cost-Aware Feature Selection</h1>
+            <p>This project explores how to select predictive features with cost sensitivity, using a modified L1-SVM formulation cast as a mixed-integer linear program (MILP). The goal is to produce accurate models while keeping feature acquisition cost manageable.</p>
+            <div class="badge-row">
+                <span class="badge">SVM</span>
+                <span class="badge">MILP</span>
+                <span class="badge">Feature Selection</span>
+                <span class="badge">Cost Sensitivity</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p>In this work, I developed a feature selection strategy that extends L1-norm Support Vector Machine to account for the cost of each feature. This approach seeks to identify feature subsets that maintain classification performance while reducing real-world acquisition and computation costs.</p>
+        </section>
+
+        <section class="section">
+            <h2>Challenge</h2>
+            <p>Traditional feature selection methods focus mainly on predictive accuracy, often ignoring the cost associated with collecting and using features in real-world applications. This can lead to impractical systems when expensive or resource-intensive features are included.</p>
+        </section>
+
+        <section class="section">
+            <h2>Approach</h2>
+            <ul>
+                <li>Modelled L1-SVM as a mixed-integer linear program (MILP) to introduce a structured and solvable optimization formulation.</li>
+                <li>Extended the model to incorporate feature costs, encouraging low-cost feature sets that still perform well.</li>
+                <li>Analyzed how cost uncertainty affects model robustness and proposed adjustments to handle varying feature expenses.</li>
+                <li>Tested the model using provided datasets and compared its performance against standard feature selection approaches.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Key Deliverables</h2>
+            <ul>
+                <li>Developed a cost-effective feature selection framework using SVM and MILP.</li>
+                <li>Built a robust formulation to mitigate uncertainty in feature costs.</li>
+                <li>Applied the method to real data and compared it with alternative models.</li>
+                <li>Documented the assumptions, results, and practical implications of cost-aware feature selection.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Impact</h2>
+            <p>This project demonstrates how optimization techniques can be combined with machine learning to create solutions that are better aligned with real-world constraints. It highlights the importance of balancing model effectiveness with feature acquisition costs, especially in applications where resources are limited.</p>
+        </section>
+
+        <a class="back-link" href="index.html">← Back to Portfolio</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WONG Man Chun</p>
+    </footer>
+</body>
+</html>
