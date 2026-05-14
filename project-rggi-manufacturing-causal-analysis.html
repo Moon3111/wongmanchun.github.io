@@ -139,41 +139,6 @@
             margin-bottom: 0.5rem;
         }
 
-        .summary-graphic {
-            display: grid;
-            grid-template-columns: minmax(220px, 1fr) 300px;
-            gap: 1.5rem;
-            margin: 2rem 0;
-            align-items: center;
-        }
-
-        .graphic-box,
-        .summary-card {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.08);
-        }
-
-        .graphic-box svg {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .summary-card h4 {
-            color: #333;
-            font-size: 1rem;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .summary-card p {
-            color: #555;
-            line-height: 1.7;
-        }
 
         .metric-label {
             color: #666;
@@ -253,10 +218,11 @@
                 <h2>Project Overview</h2>
             </div>
             <div class="section-content">
-                <p>This project explores whether the 2009 implementation of the Regional Greenhouse Gas Initiative (RGGI) caused manufacturing employment or establishment relocation from RGGI border counties to neighboring non-RGGI border counties.</p>
+                <p>This study examines the Regional Greenhouse Gas Initiative (RGGI), the first mandatory market-based carbon pricing program in the United States, and its potential impact on manufacturing employment and establishments along RGGI border counties.</p>
+                <p>The analysis covers 2000–2024 and uses annualized Bureau of Labor Statistics Quarterly Census of Employment and Wages (QCEW) data for private-sector manufacturing firms (NAICS 31-33). The sample is restricted to 73 immediate border counties across 8 states, creating 76 matched border pairs that compare RGGI counties directly with neighboring non-RGGI counties.</p>
                 <div class="highlight-box">
                     <h3>Core Question</h3>
-                    <p>Did the RGGI carbon tax induce a measurable ‘‘carbon leakage’’ effect in manufacturing employment and establishments?</p>
+                    <p>Did the RGGI carbon tax cause manufacturing firms or jobs to relocate from RGGI states to adjacent non-RGGI states, generating carbon leakage?</p>
                 </div>
             </div>
         </section>
@@ -267,20 +233,30 @@
             </div>
             <div class="section-content">
                 <h3>Data Preparation</h3>
-                <p>Used 2000–2024 annual county-level BLS QCEW data for manufacturing employment and establishments. Constructed a border county panel for 73 counties across 8 states with 76 matched pairs.</p>
+                <p>The dataset includes annual average values from 2000 to 2024 for manufacturing employment and establishment counts. It is filtered for private-sector manufacturing establishments only (BLS own_code=5) and restricted to NAICS sectors 31-33.</p>
+                <ul>
+                    <li><strong>Geographic scope:</strong> 73 border counties in 8 states, matched into 76 border pairs</li>
+                    <li><strong>Outcome variables:</strong> average manufacturing employment and total manufacturing establishments</li>
+                    <li><strong>Timing:</strong> pre-policy period 2000–2008, post-policy period 2009–2024</li>
+                    <li><strong>Transformations:</strong> natural logarithms of employment and establishment counts to interpret coefficients as percentage changes</li>
+                </ul>
 
                 <h3>Empirical Strategy</h3>
-                <p>Combined Geographic Regression Discontinuity Design (RDD) with a Two-Way Fixed Effects Difference-in-Differences (DiD) framework. The border-county design controls for shared geography, local economic conditions, and labor markets.</p>
-
+                <p>The analysis combines a Geographic Regression Discontinuity Design (RDD) with a Two-Way Fixed Effects Difference-in-Differences (DiD) model. By focusing on neighboring border counties, the design controls for local economic conditions, labor market access, and geographic proximity.</p>
                 <div class="code-block">
 Y_it = β₀ + β₁(Is_RGGI_i × post_2009_t) + α_i + γ_t + ε_it
 
 Where:
 - Y_it = log employment or log establishments
-- Is_RGGI_i = 1 for RGGI border counties
-- post_2009_t = 1 for years ≥ 2009
-- α_i = county fixed effects
-- γ_t = year fixed effects
+- Is_RGGI_i = 1 for counties in RGGI states
+- post_2009_t = 1 for years from 2009 onward
+- α_i = county fixed effects to absorb time-invariant local factors
+- γ_t = year fixed effects to absorb common macro shocks
+                </div>
+                <p>The interaction term is the main coefficient of interest, capturing the causal impact of the RGGI carbon tax on manufacturing outcomes in the treated counties relative to controls.</p>
+                <div class="highlight-box">
+                    <h3>Statistical Approach</h3>
+                    <p>Because the sample includes only 8 states, robust HC3 standard errors were used to provide more reliable inference than state-clustered standard errors in this small cluster setting.</p>
                 </div>
             </div>
         </section>
@@ -291,28 +267,15 @@ Where:
             </div>
             <div class="section-content">
                 <h3>Key Findings</h3>
-                <div class="summary-graphic">
-                    <div class="graphic-box">
-                        <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="0" y="0" width="400" height="240" fill="#f8f9fa" rx="16" />
-                            <rect x="40" y="180" width="60" height="40" fill="#667eea" rx="8" />
-                            <rect x="140" y="140" width="60" height="80" fill="#667eea" rx="8" />
-                            <rect x="240" y="120" width="60" height="100" fill="#667eea" rx="8" />
-                            <rect x="340" y="100" width="20" height="120" fill="#764ba2" rx="8" />
-                            <line x1="20" y1="220" x2="380" y2="220" stroke="#ccc" stroke-width="4" />
-                            <line x1="40" y1="200" x2="40" y2="220" stroke="#999" stroke-width="2" />
-                            <line x1="140" y1="180" x2="140" y2="220" stroke="#999" stroke-width="2" />
-                            <line x1="240" y1="160" x2="240" y2="220" stroke="#999" stroke-width="2" />
-                            <line x1="340" y1="140" x2="340" y2="220" stroke="#999" stroke-width="2" />
-                            <text x="40" y="40" fill="#333" font-size="20" font-weight="700">Summary</text>
-                            <text x="40" y="68" fill="#555" font-size="14">No significant manufacturing displacement found.</text>
-                        </svg>
-                    </div>
-                    <div class="summary-card">
-                        <h4>Visual Summary</h4>
-                        <p>This analysis confirms a null effect for RGGI on manufacturing employment and establishments across matched border counties. The result is supported by parallel-trends validation and placebo test checks.</p>
-                    </div>
-                </div>
+                <p>The empirical evidence shows that the RGGI carbon tax did not produce a statistically significant decline in manufacturing employment or establishment counts within border counties. The analysis is based on 25 years of longitudinal data for 73 border counties and uses a border-county geographic RDD with a Two-Way Fixed Effects DiD model.</p>
+                <p>The main results are as follows:</p>
+                <ul>
+                    <li><strong>Manufacturing Employment:</strong> DiD coefficient = 0.0087, p = 0.832</li>
+                    <li><strong>Manufacturing Establishments:</strong> DiD coefficient = 0.0511, p = 0.116</li>
+                    <li><strong>Pre-policy parallel trends:</strong> slope = -38.99 per year, confirming similar trends before 2009</li>
+                    <li><strong>Placebo tests:</strong> 2005 and 2007 placebo years both returned insignificant effects, supporting the identification strategy</li>
+                </ul>
+                <p>These results indicate that fears of carbon leakage — where manufacturers relocate from regulated RGGI counties to adjacent unregulated counties — are not supported by the data in this regional sample.</p>
 
                 <div class="metrics-grid">
                     <div class="metric-card">
@@ -329,7 +292,7 @@ Where:
                     </div>
                 </div>
 
-                <p>The analysis finds no statistically significant evidence that RGGI caused manufacturing employment or establishments to decline in RGGI border counties relative to matched non-RGGI border counties.</p>
+                <p>The findings are robust to the use of HC3 robust standard errors, which are preferred when clustering is limited by a small number of state-level groups. Overall, the study suggests that RGGI was compatible with manufacturing stability rather than causing job destruction or relocation in the observed border-area sample.</p>
             </div>
         </section>
 
