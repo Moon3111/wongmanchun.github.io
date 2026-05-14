@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle Routing & Zone Optimization Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            max-width: 760px;
+            opacity: 0.95;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            background-color: rgba(255,255,255,0.18);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .section p,
+        .section ul,
+        .section pre {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            list-style: disc inside;
+            gap: 0.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+        }
+
+        pre {
+            background: #f4f6ff;
+            border: 1px solid #d8dcef;
+            border-radius: 12px;
+            padding: 1rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+
+        code {
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            color: #2a2a72;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-box {
+            background-color: #f6f8ff;
+            border: 1px solid #dbe2ff;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .metric-box h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .metric-box p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Vehicle Routing & Zone Optimization</h1>
+            <p>This project solves a complex logistics challenge by automatically designing delivery zones and optimizing daily vehicle routes to minimize total travel distance across a network of 30 customer sites.</p>
+            <div class="badge-row">
+                <span class="badge">Combinatorial Optimization</span>
+                <span class="badge">K-Means Clustering</span>
+                <span class="badge">TSP Solving</span>
+                <span class="badge">Parallel Processing</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Problem Statement</h2>
+            <p>A delivery company operates a network of 30 customer sites with periodic demand patterns (Monday–Friday). The goal is to partition these sites into exactly 3 delivery zones, where each zone is served by one delivery person. The zones must be fixed once designed, and the challenge is to find the optimal zoning that minimizes the total weekly delivery cost (sum of travel distances) across all days.</p>
+        </section>
+
+        <section class="section">
+            <h2>Key Constraints</h2>
+            <ul>
+                <li>Exactly 3 zones, each served by one delivery person.</li>
+                <li>Each zone cannot exceed 12 customer sites.</li>
+                <li>Customer demand varies by day (some sites don't need service every day).</li>
+                <li>Zones can overlap: a customer can belong to multiple zones and be served by different staff on different days.</li>
+                <li>Distance measured using Manhattan distance metric.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Approach & Techniques</h2>
+            <p>The solution uses a multi-stage optimization pipeline:</p>
+            <ul>
+                <li><strong>Clustering:</strong> K-Means clustering to create initial zone assignments based on geographic proximity.</li>
+                <li><strong>Capacity Handling:</strong> Post-processing to ensure no zone exceeds 12 sites; customers are moved between zones based on distance to centroids.</li>
+                <li><strong>Strategic Overlaps:</strong> Selected customers from adjacent clusters are added to neighboring zones to improve flexibility for daily assignments.</li>
+                <li><strong>Daily Assignment:</strong> For each day, shared customers (those in multiple zones) are greedily assigned to their closest zone centroid.</li>
+                <li><strong>TSP Solving:</strong> Google OR-Tools to find near-optimal travel routes for each zone on each day.</li>
+                <li><strong>Parallel Optimization:</strong> Multiple zoning configurations evaluated in parallel using multiprocessing to find the global best.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Key Code Components</h2>
+            <p><strong>1. Distance Matrix Calculation (Manhattan Distance):</strong></p>
+            <pre><code>def manhattan_distance(a, b):
+    return abs(a['X'] - b['X']) + abs(a['Y'] - b['Y'])
+
+locations = {row['ID']: (row['X'], row['Y']) for _, row in df.iterrows()}
+distance_matrix = {}
+for i in locations:
+    distance_matrix[i] = {}
+    for j in locations:
+        distance_matrix[i][j] = manhattan_distance(
+            {'X': locations[i][0], 'Y': locations[i][1]},
+            {'X': locations[j][0], 'Y': locations[j][1]}
+        )</code></pre>
+
+            <p><strong>2. TSP Solver using OR-Tools:</strong></p>
+            <pre><code>def solve_tsp(nodes):
+    manager = pywrapcp.RoutingIndexManager(len(nodes), 1, 0)
+    routing = pywrapcp.RoutingModel(manager)
+    
+    def distance_callback(from_index, to_index):
+        from_node = manager.IndexToNode(from_index)
+        to_node = manager.IndexToNode(to_index)
+        return distance_matrix[nodes[from_node]][nodes[to_node]]
+    
+    transit_callback_index = routing.RegisterTransitCallback(distance_callback)
+    routing.SetArcCostEvaluatorOfAllVehicles(transit_callback_index)
+    
+    search_parameters = pywrapcp.DefaultRoutingSearchParameters()
+    search_parameters.first_solution_strategy = routing_enums_pb2.FirstSolutionStrategy.PATH_CHEAPEST_ARC
+    search_parameters.local_search_metaheuristic = routing_enums_pb2.LocalSearchMetaheuristic.GREEDY_DESCENT
+    search_parameters.time_limit.seconds = 1
+    
+    solution = routing.SolveWithParameters(search_parameters)
+    return route, cost</code></pre>
+
+            <p><strong>3. K-Means Based Zone Clustering:</strong></p>
+            <pre><code>def cluster_zoning(num_zones=3, max_zone_size=12, overlap=3):
+    customer_coords = np.array([[locations[c][0], locations[c][1]] for c in locations if c != 0])
+    customer_ids = [c for c in locations if c != 0]
+    
+    kmeans = KMeans(n_clusters=num_zones, n_init=10, random_state=42).fit(customer_coords)
+    
+    zones = {i+1: [] for i in range(num_zones)}
+    for idx, label in enumerate(kmeans.labels_):
+        zones[label+1].append(customer_ids[idx])
+    
+    # Capacity constraint handling and overlap addition...
+    return zones</code></pre>
+
+            <p><strong>4. Daily Route Optimization:</strong></p>
+            <pre><code>def optimize_day(day, zones, shared_customers):
+    active = df[df[day] == 1]['ID'].tolist()
+    
+    # Assign shared customers to nearest zone centroid
+    for c in active:
+        if c in shared_customers:
+            min_dist = float('inf')
+            best_zone = shared_customers[c][0]
+            for zid in shared_customers[c]:
+                dist = manhattan_distance(locations[c], zone_centroids[zid])
+                if dist < min_dist:
+                    min_dist = dist
+                    best_zone = zid
+            assignment[c] = best_zone
+    
+    # Solve TSP for each zone
+    for zid in zones:
+        nodes = [0] + zone_customers[zid]
+        route, cost = solve_tsp(nodes)
+        total_cost += cost</code></pre>
+        </section>
+
+        <section class="section">
+            <h2>Optimization Results</h2>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h3>Weekly Total Cost</h3>
+                    <p><strong>3044</strong> units (sum of daily routing distances)</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Zone Design</h3>
+                    <p>3 optimized clusters with strategic overlaps for flexible daily assignments</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Optimization Trials</h3>
+                    <p>500 parallel trials using multiprocessing to find global best</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Network Size</h3>
+                    <p>30 customer sites + 1 hub, 5-day service cycle</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Practical Skills Demonstrated</h2>
+            <ul>
+                <li>Combinatorial optimization and heuristic design.</li>
+                <li>Google OR-Tools for Traveling Salesman Problem (TSP) solving.</li>
+                <li>Scikit-learn K-Means clustering for initial zone partitioning.</li>
+                <li>Python multiprocessing for parallel evaluation of solution candidates.</li>
+                <li>Constraint handling and feasibility checking in optimization problems.</li>
+                <li>Distance matrix computations and graph-based algorithms.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Impact & Insights</h2>
+            <p>This project demonstrates how to tackle real-world logistics problems by combining machine learning (clustering), operations research (optimization), and parallel computing. The ability to design fixed zones and handle daily demand variation is critical for practical delivery operations, reducing routing costs while maintaining service flexibility.</p>
+        </section>
+
+        <a class="back-link" href="index.html">← Back to Portfolio</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WONG Man Chun</p>
+    </footer>
+</body>
+</html>
