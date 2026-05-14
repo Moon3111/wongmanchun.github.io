@@ -158,9 +158,36 @@
         }
 
         .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            overflow-x: auto;
             gap: 2rem;
+            padding: 1rem 0;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #667eea #f0f0f0;
+        }
+
+        .projects-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .projects-grid::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .projects-grid::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .projects-grid::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
+        .project-card {
+            flex: 0 0 300px;
+            scroll-snap-align: start;
         }
 
         .project-card {
@@ -437,6 +464,23 @@
                             <span class="project-tag">Clustering</span>
                         </div>
                         <a href="project-vehicle-routing-optimization.html" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <h3>Tesla Supply Chain Analysis</h3>
+                        <p style="opacity: 0.9; margin: 0;">Strategic analysis of EV manufacturer's supply chain resilience and optimization</p>
+                    </div>
+                    <div class="project-body">
+                        <p>Analyzed Tesla's global supply chain, focusing on inventory management, risk mitigation, and strategic recommendations for operational excellence.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Supply Chain</span>
+                            <span class="project-tag">Risk Analysis</span>
+                            <span class="project-tag">Strategic Planning</span>
+                        </div>
+                        <a href="project-tesla-supply-chain-analysis.html" class="project-link">View Project →</a>
                     </div>
                 </div>
             </div>

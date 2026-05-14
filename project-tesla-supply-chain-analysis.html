@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesla Supply Chain Analysis - Wong Man Chun</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h2 {
+            color: #667eea;
+        }
+
+        nav a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #764ba2;
+        }
+
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+
+        .project-section {
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+        }
+
+        .section-header h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .section-content h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .highlight-box {
+            background-color: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        .code-header {
+            background-color: #667eea;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px 8px 0 0;
+            margin: -1.5rem -1.5rem 1rem -1.5rem;
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1rem;
+        }
+
+        .recommendations-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .recommendations-list li {
+            background: #f8f9fa;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .recommendations-list li strong {
+            color: #667eea;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .section-content {
+                padding: 1.5rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Tesla Supply Chain Analysis</h1>
+            <p>IEDA 4410 - Strategic Supply Chain Management</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <h2>Wong Man Chun</h2>
+            <a href="index.html">← Back to Portfolio</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Project Overview -->
+        <section class="project-section">
+            <div class="section-header">
+                <h2>Project Overview</h2>
+            </div>
+            <div class="section-content">
+                <p>This comprehensive analysis examines Tesla's global supply chain operations, focusing on strategic positioning, inventory management strategies, and risk mitigation approaches. The project evaluates how Tesla maintains competitive advantage through innovative supply chain practices while navigating complex global challenges.</p>
+
+                <div class="highlight-box">
+                    <h3>Key Focus Areas</h3>
+                    <ul>
+                        <li>Supplier relationship management and localization strategies</li>
+                        <li>Inventory optimization and just-in-time manufacturing</li>
+                        <li>Risk assessment and disruption management</li>
+                        <li>Sustainability initiatives and battery supply chain</li>
+                        <li>Digital transformation and vertical integration</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Strategic Analysis -->
+        <section class="project-section">
+            <div class="section-header">
+                <h2>Strategic Analysis</h2>
+            </div>
+            <div class="section-content">
+                <h3>Market Position & Competitive Advantage</h3>
+                <p>Tesla's supply chain strategy is built around vertical integration and direct control over critical components. The company's approach to battery production and vehicle assembly represents a fundamental shift from traditional automotive supply chain models.</p>
+
+                <h3>Supplier Network Analysis</h3>
+                <p>The analysis revealed Tesla's strategic shift towards regional supplier localization, reducing dependency on single-source suppliers and improving supply chain resilience. Key suppliers include Panasonic for battery cells, LG Chem for energy storage, and various tier-1 suppliers for vehicle components.</p>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">85%</div>
+                        <div class="metric-label">Battery Supply Localization</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">60+</div>
+                        <div class="metric-label">Key Strategic Suppliers</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">45</div>
+                        <div class="metric-label">Days Inventory Outstanding</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Risk Assessment -->
+        <section class="project-section">
+            <div class="section-header">
+                <h2>Risk Assessment & Mitigation</h2>
+            </div>
+            <div class="section-content">
+                <h3>Supply Chain Vulnerabilities</h3>
+                <p>The analysis identified several critical risk factors affecting Tesla's operations:</p>
+                <ul>
+                    <li><strong>Geopolitical tensions</strong> impacting semiconductor and rare earth mineral supplies</li>
+                    <li><strong>Raw material scarcity</strong> particularly lithium, cobalt, and nickel for battery production</li>
+                    <li><strong>Logistics disruptions</strong> affecting global shipping and port operations</li>
+                    <li><strong>Currency fluctuations</strong> influencing international procurement costs</li>
+                </ul>
+
+                <h3>Mitigation Strategies</h3>
+                <p>Tesla employs multiple risk mitigation approaches including supplier diversification, strategic inventory positioning, and advanced analytics for demand forecasting.</p>
+            </div>
+        </section>
+
+        <!-- Optimization Recommendations -->
+        <section class="project-section">
+            <div class="section-header">
+                <h2>Strategic Recommendations</h2>
+            </div>
+            <div class="section-content">
+                <h3>Supply Chain Optimization Strategies</h3>
+                <div class="recommendations-list">
+                    <li><strong>Enhanced Supplier Collaboration:</strong> Implement advanced supplier portals and real-time performance monitoring systems to improve visibility and collaboration across the network.</li>
+                    <li><strong>Inventory Optimization:</strong> Deploy AI-driven inventory management systems to balance working capital requirements with service level commitments.</li>
+                    <li><strong>Risk Diversification:</strong> Expand supplier base in emerging markets while maintaining quality standards and developing contingency plans for critical components.</li>
+                    <li><strong>Sustainability Integration:</strong> Accelerate transition to sustainable sourcing practices and circular economy principles for battery materials and vehicle end-of-life management.</li>
+                    <li><strong>Digital Transformation:</strong> Invest in IoT sensors, blockchain traceability, and predictive analytics to enhance supply chain visibility and responsiveness.</li>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Approach -->
+        <section class="project-section">
+            <div class="section-header">
+                <h2>Implementation Framework</h2>
+            </div>
+            <div class="section-content">
+                <h3>Methodology</h3>
+                <p>The analysis utilized a comprehensive framework combining qualitative and quantitative approaches:</p>
+                <ul>
+                    <li>Supply chain mapping and network analysis</li>
+                    <li>Financial performance evaluation</li>
+                    <li>Risk assessment modeling</li>
+                    <li>Benchmarking against industry standards</li>
+                    <li>Scenario planning and sensitivity analysis</li>
+                </ul>
+
+                <h3>Key Performance Indicators</h3>
+                <p>Recommended KPIs for monitoring supply chain performance include:</p>
+                <div class="code-block">
+Supplier Performance Score = (Quality × 0.4) + (Delivery × 0.3) + (Cost × 0.2) + (Innovation × 0.1)
+
+Inventory Turnover Ratio = Cost of Goods Sold / Average Inventory
+
+Supply Chain Risk Index = Σ (Risk Probability × Risk Impact) for critical components
+                </div>
+            </div>
+        </section>
+
+        <!-- Conclusion -->
+        <section class="project-section">
+            <div class="section-header">
+                <h2>Conclusion</h2>
+            </div>
+            <div class="section-content">
+                <p>This analysis demonstrates Tesla's innovative approach to supply chain management, characterized by vertical integration, technological innovation, and strategic risk management. While the company faces significant challenges in scaling production and managing global complexities, its forward-thinking strategies position it well for long-term success in the evolving electric vehicle market.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Key Takeaway:</strong> Tesla's supply chain excellence lies not just in operational efficiency, but in its ability to anticipate industry shifts and build resilient, technology-driven networks that support sustainable growth.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Wong Man Chun. All rights reserved.</p>
+    </footer>
+</body>
+</html>
