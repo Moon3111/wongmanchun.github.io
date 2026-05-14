@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Data Analysis Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            max-width: 760px;
+            opacity: 0.95;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            background-color: rgba(255,255,255,0.18);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .section p,
+        .section ul,
+        .section pre {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            list-style: disc inside;
+            gap: 0.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+        }
+
+        pre {
+            background: #f4f6ff;
+            border: 1px solid #d8dcef;
+            border-radius: 12px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            color: #2a2a72;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-box {
+            background-color: #f6f8ff;
+            border: 1px solid #dbe2ff;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .metric-box h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .metric-box p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>E-Commerce Data Analysis</h1>
+            <p>This project captures the end-to-end process of web scraping product data, cleaning and normalizing datasets, and using visual analytics to identify the factors that influence Amazon product sales.</p>
+            <div class="badge-row">
+                <span class="badge">Web Scraping</span>
+                <span class="badge">Data Cleaning</span>
+                <span class="badge">Visualization</span>
+                <span class="badge">Machine Learning Prep</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Project Summary</h2>
+            <p>This project investigates how product attributes such as price per count, star rating, and comment volume affect sales across three product categories: coffee pods, sanitary pads, and induction cooktops. It uses Python-based scraping and data analysis to build practical insights for e-commerce decision-making.</p>
+        </section>
+
+        <section class="section">
+            <h2>Data Collection & Tools</h2>
+            <ul>
+                <li>Collected Amazon product data using Python libraries: <code>requests</code>, <code>BeautifulSoup</code>, and <code>cloudscraper</code>.</li>
+                <li>Crawled multiple pages for each product category and extracted title, price, star rating, comment count, and sales metrics.</li>
+                <li>Saved the cleaned datasets into CSV files: <code>coffee_pod_data.csv</code>, <code>sanitary_pad_data.csv</code>, <code>induction_cooktop_data.csv</code>, and <code>cross_data.csv</code>.</li>
+                <li>Prepared data for analysis using <code>pandas</code>, <code>numpy</code>, <code>seaborn</code>, and <code>matplotlib</code>.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Key Code Example</h2>
+            <p>This snippet shows how the project gathered product cards from Amazon and extracted structured information into a DataFrame.</p>
+            <pre><code>def get_product_cards(url, i, max_retries=6):
+    headers = {...}
+    cookies = {...}
+    while retry_count < max_retries:
+        scraper = cloudscraper.create_scraper()
+        response = scraper.get(url, headers=headers, cookies=cookies)
+        soup = BeautifulSoup(response.text, 'html.parser')
+        product_cards = soup.find_all(class_='s-result-item', attrs={'data-component-type': 's-search-result'})
+        for card in product_cards:
+            title = card.find('span', class_='a-size-base-plus a-color-base a-text-normal').text.strip()
+            price_text = ...
+            star_text = ...
+            product_data_list[i].append({...})
+    return pd.DataFrame(product_data_list[i])
+</code></pre>
+        </section>
+
+        <section class="section">
+            <h2>Data Processing</h2>
+            <p>The raw scraped data was cleaned by removing outliers, normalizing numerical attributes, and inverting the star rating scale to make higher satisfaction values easier to compare visually. The analysis used statistical filtering and data normalization to prepare the results for robust visualization.</p>
+            <pre><code>Q1 = df['Price per count'].quantile(0.25)
+Q3 = df['Price per count'].quantile(0.75)
+IQR = Q3 - Q1
+clean_df = df[(df['Price per count'] >= Q1 - 1.5*IQR) & (df['Price per count'] <= Q3 + 1.5*IQR)]
+clean_df['star'] = 5 - clean_df['star']
+clean_df.to_csv('cleaned_data.csv', index=False)
+</code></pre>
+        </section>
+
+        <section class="section">
+            <h2>Visual Analysis & Results</h2>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h3>Star Rating Trends</h3>
+                    <p>Density plots showed most products concentrate around higher star values, suggesting customer satisfaction is strong across categories.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Price Distributions</h3>
+                    <p>Induction cooktops had the highest price density peak, while sanitary pads showed the broadest pricing range and coffee pods fell in between.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Sales Correlations</h3>
+                    <p>Regression analysis revealed a weak negative price-sales relationship for sanitary pads and cooktops, and a slight positive sales trend for coffee pods.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Comment Engagement</h3>
+                    <p>Comment count densities indicated low engagement for all categories, but higher comment activity tended to correlate with stronger sales.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Practical Skills Demonstrated</h2>
+            <ul>
+                <li>Web scraping and handling anti-bot defenses with user-agent rotation and cookies.</li>
+                <li>Data cleaning, outlier filtering, and feature engineering in Python.</li>
+                <li>Exploratory data analysis using visual tools like KDE plots, scatter plots, and regression lines.</li>
+                <li>Working with multiple datasets and merging results for cross-category comparisons.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Conclusion</h2>
+            <p>This project shows how data-driven e-commerce analysis can reveal insights beyond price alone. By combining scraping, normalization, and visual analysis, it highlights the importance of star ratings, comment engagement, and pricing structure in predicting product sales performance.</p>
+        </section>
+
+        <a class="back-link" href="index.html">← Back to Portfolio</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WONG Man Chun</p>
+    </footer>
+</body>
+</html>

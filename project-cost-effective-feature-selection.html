@@ -88,6 +88,31 @@
             margin-bottom: 0.8rem;
         }
 
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-box {
+            background-color: #f6f8ff;
+            border: 1px solid #dbe2ff;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .metric-box h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .metric-box p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
         .back-link {
             display: inline-block;
             margin-top: 1rem;
@@ -121,48 +146,73 @@
     <div class="container">
         <header>
             <h1>Cost-Aware Feature Selection</h1>
-            <p>This project explores how to select predictive features with cost sensitivity, using a modified L1-SVM formulation cast as a mixed-integer linear program (MILP). The goal is to produce accurate models while keeping feature acquisition cost manageable.</p>
+            <p>This project develops a cost-sensitive feature selection framework by extending L1-norm SVM into a MILP formulation. The aim is to find accurate predictors while keeping feature acquisition cost practical for real-world applications.</p>
             <div class="badge-row">
                 <span class="badge">SVM</span>
                 <span class="badge">MILP</span>
-                <span class="badge">Feature Selection</span>
-                <span class="badge">Cost Sensitivity</span>
+                <span class="badge">Robust Optimization</span>
+                <span class="badge">Healthcare Data</span>
             </div>
         </header>
 
         <section class="section">
-            <h2>Project Overview</h2>
-            <p>In this work, I developed a feature selection strategy that extends L1-norm Support Vector Machine to account for the cost of each feature. This approach seeks to identify feature subsets that maintain classification performance while reducing real-world acquisition and computation costs.</p>
+            <h2>Introduction</h2>
+            <p>The project addresses the challenge of high-dimensional data and the curse of dimensionality by incorporating feature acquisition cost into the selection process. It focuses on healthcare applications, where medical testing costs and resource limits make cost-aware feature selection critically important.</p>
         </section>
 
         <section class="section">
-            <h2>Challenge</h2>
-            <p>Traditional feature selection methods focus mainly on predictive accuracy, often ignoring the cost associated with collecting and using features in real-world applications. This can lead to impractical systems when expensive or resource-intensive features are included.</p>
+            <h2>Objective</h2>
+            <p>Build and compare cost-effective and robust feature selection models that maintain high accuracy while minimizing the total cost of selected features. The analysis also explores group-based feature selection and demonstrates a computational strategy for solving complex MILP models.</p>
         </section>
 
         <section class="section">
             <h2>Approach</h2>
             <ul>
-                <li>Modelled L1-SVM as a mixed-integer linear program (MILP) to introduce a structured and solvable optimization formulation.</li>
-                <li>Extended the model to incorporate feature costs, encouraging low-cost feature sets that still perform well.</li>
-                <li>Analyzed how cost uncertainty affects model robustness and proposed adjustments to handle varying feature expenses.</li>
-                <li>Tested the model using provided datasets and compared its performance against standard feature selection approaches.</li>
+                <li>Extended ℓ1-SVM into a mixed-integer linear program (CESVM1) with a budget constraint to select informative, low-cost features.</li>
+                <li>Introduced binary selection variables to enforce a budget limit on total feature cost and activated model weights only for selected features.</li>
+                <li>Built a robust variant (RCESVM1) that accounts for feature cost uncertainty using a conservatism parameter, Γ, to improve real-world reliability.</li>
+                <li>Explored group feature selection with GFS-CESVM1 and GFS-RCESVM1, handling grouped features under budget restrictions.</li>
+                <li>Applied a Branch-Cut-and-Price (BCP) algorithm to manage MILP complexity and improve solution performance.</li>
             </ul>
         </section>
 
         <section class="section">
-            <h2>Key Deliverables</h2>
+            <h2>Data and Context</h2>
+            <p>Study data focuses on Chronic Kidney Disease (CKD), where early detection is essential. CKD is a progressive condition with serious health consequences, and the project examines how cost-aware feature selection can reduce unnecessary tests while preserving model accuracy.</p>
+        </section>
+
+        <section class="section">
+            <h2>Results</h2>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h3>Accuracy Improvement</h3>
+                    <p>Achieved a 20% increase in accuracy after applying robust, cost-aware selection techniques.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Recall</h3>
+                    <p>Recorded a recall rate of 1.0, demonstrating the model detected all CKD cases in the test data.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>F1 Score</h3>
+                    <p>F1 performance improved significantly, showing a strong balance between precision and recall.</p>
+                </div>
+            </div>
+            <p>The results indicate that robust cost-aware feature selection can reduce false positives and improve the practical reliability of CKD screening models.</p>
+        </section>
+
+        <section class="section">
+            <h2>Key Insights</h2>
             <ul>
-                <li>Developed a cost-effective feature selection framework using SVM and MILP.</li>
-                <li>Built a robust formulation to mitigate uncertainty in feature costs.</li>
-                <li>Applied the method to real data and compared it with alternative models.</li>
-                <li>Documented the assumptions, results, and practical implications of cost-aware feature selection.</li>
+                <li>Cost-aware selection helps avoid impractical models that use expensive features with marginal accuracy gains.</li>
+                <li>Robust optimization under cost uncertainty increases model stability and makes predictions more trustworthy.</li>
+                <li>Feature group selection provides a structured way to manage correlated or related clinical features within a budget.</li>
+                <li>Using financial and computational constraints together leads to more usable healthcare decision support tools.</li>
             </ul>
         </section>
 
         <section class="section">
-            <h2>Impact</h2>
-            <p>This project demonstrates how optimization techniques can be combined with machine learning to create solutions that are better aligned with real-world constraints. It highlights the importance of balancing model effectiveness with feature acquisition costs, especially in applications where resources are limited.</p>
+            <h2>Conclusion</h2>
+            <p>The project demonstrates a practical framework for cost-effective and robust feature selection in machine learning. By integrating budget constraints and uncertainty handling into SVM-based feature selection, the approach supports better decision-making in applications where resource use and expense matter.</p>
         </section>
 
         <a class="back-link" href="index.html">← Back to Portfolio</a>
