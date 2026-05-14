@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>E-Commerce Data Analysis Project</title>
-    <style>
+            <style>
         * {
             margin: 0;
             padding: 0;
@@ -58,7 +58,8 @@
             border: 1px solid rgba(255,255,255,0.25);
         }
 
-        .section {
+        .section,
+        .project-section {
             background-color: white;
             border-radius: 16px;
             padding: 2rem;
@@ -66,7 +67,8 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.04);
         }
 
-        .section h2 {
+        .section h2,
+        .section-header h2 {
             font-size: 1.8rem;
             color: #222;
             margin-bottom: 1rem;
@@ -74,32 +76,25 @@
 
         .section p,
         .section ul,
-        .section pre {
+        .section li,
+        .section-content p,
+        .section-content ul,
+        .section-content li {
             font-size: 1rem;
             color: #555;
             margin-bottom: 1rem;
+            line-height: 1.7;
         }
 
-        .section ul {
+        .section ul,
+        .section-content ul {
             list-style: disc inside;
             gap: 0.5rem;
         }
 
-        .section li {
+        .section li,
+        .section-content li {
             margin-bottom: 0.8rem;
-        }
-
-        pre {
-            background: #f4f6ff;
-            border: 1px solid #d8dcef;
-            border-radius: 12px;
-            padding: 1rem;
-            overflow-x: auto;
-        }
-
-        code {
-            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-            color: #2a2a72;
         }
 
         .metric-grid {
@@ -125,6 +120,27 @@
         .metric-box p {
             font-size: 0.95rem;
             color: #555;
+        }
+
+        .highlight-box {background: #eef2ff; border: 1px solid #dbe2ff; border-radius: 14px; padding: 1.25rem; margin-top: 1rem;}
+        .highlight-box h3 {margin-bottom: 0.75rem; font-size: 1.1rem; color: #222;}
+        .metrics-grid, .metric-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-top: 1rem;}
+        .metric-card, .metric-box {background-color: #f6f8ff; border: 1px solid #dbe2ff; border-radius: 14px; padding: 1rem;}
+        .metric-value {font-size: 1.5rem; font-weight: 700; color: #222;}
+        .metric-label {font-size: 0.95rem; color: #555; margin-top: 0.5rem;}
+        .code-block {background: #f4f6ff; border: 1px solid #d8dcef; border-radius: 12px; padding: 1rem; white-space: pre-wrap; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; color: #2a2a72;}
+
+        pre {
+            background: #f4f6ff;
+            border: 1px solid #d8dcef;
+            border-radius: 12px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            color: #2a2a72;
         }
 
         .back-link {
