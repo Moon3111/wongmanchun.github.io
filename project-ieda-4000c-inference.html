@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEDA 4000C Inference Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            max-width: 760px;
+            opacity: 0.95;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            background-color: rgba(255,255,255,0.18);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-size: 1.8rem;
+            color: #222;
+            margin-bottom: 1rem;
+        }
+
+        .section p,
+        .section ul,
+        .section li {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            list-style: disc inside;
+            gap: 0.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.8rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-box {
+            background-color: #f6f8ff;
+            border: 1px solid #dbe2ff;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .metric-box h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .metric-box p {
+            font-size: 0.95rem;
+            color: #555;
+        }
+
+        .highlight-box {
+            background: #eef2ff;
+            border: 1px solid #dbe2ff;
+            border-radius: 14px;
+            padding: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .highlight-box h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.1rem;
+            color: #222;
+        }
+
+        .code-block {
+            background: #f4f6ff;
+            border: 1px solid #d8dcef;
+            border-radius: 12px;
+            padding: 1rem;
+            white-space: pre-wrap;
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            color: #2a2a72;
+        }
+
+        pre {
+            background: #f4f6ff;
+            border: 1px solid #d8dcef;
+            border-radius: 12px;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        code {
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            color: #2a2a72;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #764ba2;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Inference for Learning Agents</h1>
+            <p>Inferring private bidder values from quality-weighted first-price auction bids and evaluating downstream revenue optimization.</p>
+            <div class="badge-row">
+                <span class="badge">Auction Theory</span>
+                <span class="badge">No-Regret Learning</span>
+                <span class="badge">Causal Inference</span>
+                <span class="badge">Simulation</span>
+                <span class="badge">Mechanism Design</span>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2>Project Overview</h2>
+            <p>This project studies quality-weighted first-price auctions in display advertising, where advertisers learn bids through a no-regret algorithm. It uses observed bid sequences to infer private bidder values and then evaluates whether those estimates can improve auction revenue through reserve pricing.</p>
+        </section>
+
+        <section class="section">
+            <h2>Objective</h2>
+            <ul>
+                <li>Recover private bidder values from noisy learning-based bids in a quality-weighted first-price auction.</li>
+                <li>Measure how the rationalizable value set changes as auction rounds increase.</li>
+                <li>Compare a midpoint estimator against the true values and study inference accuracy.</li>
+                <li>Evaluate whether inferred values can inform a revenue-enhancing reserve price.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Approach</h2>
+            <p>The study simulates five bidders over auction rounds, with each bidder using a multiplicative weights update algorithm to minimize regret. Match qualities are drawn independently from U[0,1] each round, and the auction winner is determined by the highest quality-weighted bid.</p>
+            <div class="highlight-box">
+                <h3>Inference Method</h3>
+                <p>Construct the rationalizable set of values consistent with observed bids under ε-regret. Point predictions are derived from the midpoint of this interval, and the resulting estimates are used to compute reserve prices.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Key Metrics</h2>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h3>Bidder Count</h3>
+                    <p>5 advertisers using quality-weighted first-price bidding.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Rounds Tested</h3>
+                    <p>50, 100, 250, and 500 auction rounds per trial.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Learning Rule</h3>
+                    <p>Multiplicative Weights Update with η = 0.08.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Reserve Impact</h3>
+                    <p>Revenue gain was negative at all horizons, improving from −30.5% to −8.8% as T increased.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Findings</h2>
+            <p>As auction rounds increase, the rationalizable set narrows and inference accuracy improves. The midpoint estimator's MSE fell by nearly 79% from T = 50 to T = 500, while coverage rose to 99% at the longest horizon.</p>
+            <ul>
+                <li>Rationalizable set width decreased from approximately 0.70 at T = 50 to 0.49 at T = 500.</li>
+                <li>MSE dropped from 0.075 to 0.016, indicating more accurate inferred values with more data.</li>
+                <li>Coverage reached 99% at T = 500, supporting the theoretical containment guarantee.</li>
+                <li>Reserve pricing based on inferred values remained revenue-negative due to upward bias in the midpoint estimator.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Implications</h2>
+            <p>The project illustrates that bid-based inference can recover useful information about bidder values, but it also highlights the risks of applying those estimates directly to reserve pricing without accounting for estimator bias and uncertainty.</p>
+            <ul>
+                <li>Inference is feasible, but convergence can be slow when match qualities add noise.</li>
+                <li>The midpoint of the rationalizable set is convenient but biased, especially for low-value bidders.</li>
+                <li>Revenue optimization requires caution; a noisy inferred reserve can reduce auction performance.</li>
+                <li>Future work should explore alternative point estimators and adaptive reserve rules based on estimation uncertainty.</li>
+            </ul>
+        </section>
+
+        <a class="back-link" href="index.html">← Back to Portfolio</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WONG Man Chun</p>
+    </footer>
+</body>
+</html>
