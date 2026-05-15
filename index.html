@@ -242,7 +242,7 @@
         /* Experience & Leadership Sections */
         .split-sections-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
             gap: 3rem;
             width: 100%;
         }
@@ -263,7 +263,7 @@
 
         .split-section h2 {
             margin-bottom: 2rem;
-            text-align: left;
+            text-align: center;
             font-size: 1.8rem;
         }
 
@@ -391,13 +391,15 @@
         .project-highlight-row {
             display: flex;
             gap: 2rem;
-            align-items: flex-start;
+            align-items: stretch;
             margin-bottom: 3rem;
         }
 
         .project-card.fixed-card {
-            flex: 0 0 400px;
-            min-width: 400px;
+            flex: 0 0 280px;
+            min-width: 280px;
+            max-width: 280px;
+            align-self: stretch;
         }
 
         .projects-scroll-wrap {
@@ -738,8 +740,8 @@
             <div class="split-sections-wrapper">
                 <div class="split-section" id="experience-list">
                     <h2>Professional Experience</h2>
-                    <div class="split-scroll-wrap">
-                        <div class="split-card-grid">
+                    <div class="projects-scroll-wrap">
+                        <div class="projects-grid">
                             <div class="project-card">
                                 <div class="project-header">
                                     <h3>PricewaterhouseCoopers</h3>
@@ -758,18 +760,36 @@
                                     <button class="detail-button" aria-controls="detail-rene" aria-expanded="false" onclick="showDetail('detail-rene')">View Detail →</button>
                                 </div>
                             </div>
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <h3>HKCareers Asia Quant Academy</h3>
+                                    <p style="opacity: 0.9; margin: 0;">Part-time Marketing Intern, Hong Kong<br>15/01/2023 – 24/06/2024</p>
+                                </div>
+                                <div class="project-body">
+                                    <button class="detail-button" aria-controls="detail-hkcareers" aria-expanded="false" onclick="showDetail('detail-hkcareers')">View Detail →</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="split-section" id="leadership">
                     <h2>Leadership Enrichment</h2>
-                    <div class="split-scroll-wrap">
-                        <div class="split-card-grid">
+                    <div class="projects-scroll-wrap">
+                        <div class="projects-grid">
                             <div class="project-card">
                                 <div class="project-header">
                                     <h3>The Engineering Students’ Union, HKUSTSU</h3>
-                                    <p style="opacity: 0.9; margin: 0;">President<br>01/04/2023 - 01/04/2024</p>
+                                    <p style="opacity: 0.9; margin: 0;">President<br>01/04/2023 – 01/04/2024</p>
+                                </div>
+                                <div class="project-body">
+                                    <button class="detail-button" aria-controls="detail-hkustsu" aria-expanded="false" onclick="showDetail('detail-hkustsu')">View Detail →</button>
+                                </div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <h3>The Engineering Students’ Union, HKUSTSU</h3>
+                                    <p style="opacity: 0.9; margin: 0;">Academic & External Secretary<br>12/10/2025 – 01/04/2026</p>
                                 </div>
                                 <div class="project-body">
                                     <button class="detail-button" aria-controls="detail-hkustsu" aria-expanded="false" onclick="showDetail('detail-hkustsu')">View Detail →</button>
@@ -805,12 +825,26 @@
                         <li>Supported legal proceedings by attending court hearings and managing the filing of formal documents, demonstrating a practical understanding of Hong Kong judicial procedures and legal protocols.</li>
                     </ul>
                 </div>
-                <div id="detail-hkustsu" class="detail-panel">
-                    <h3>The Engineering Students’ Union, HKUSTSU — President</h3>
+                <div id="detail-hkcareers" class="detail-panel">
+                    <h3>HKCareers Asia Quant Academy — Part-time Marketing Intern</h3>
                     <ul>
+                        <li>Developed educational materials for a quantitative trading academy covering financial modelling, Python, Pandas, NumPy, algorithmic trading, and back testing techniques.</li>
+                        <li>Analysed historical market data to identify significant downturns and growth trends over the past decade; presented key findings to enhance understanding of market dynamics.</li>
+                        <li>Researched and evaluated over 10 master's course materials, papers, and online programs in one week to ensure accurate and comprehensive course content for quant trading.</li>
+                    </ul>
+                </div>
+                <div id="detail-hkustsu" class="detail-panel">
+                    <h3>The Engineering Students’ Union, HKUSTSU</h3>
+                    <p style="margin-top: 1.5rem; font-weight: 600;">President — 01/04/2023 – 01/04/2024</p>
                         <li>Directed an executive committee of 11 members by implementing a structured division of labor and streamlined internal communication protocols; orchestrated large-scale campus initiatives to enhance student engagement and professional development opportunities for 500+ engineering students.</li>
                         <li>Executed a strategic corporate outreach campaign, successfully pitching and securing sponsorships or participation from 50+ industry leaders, including CLP Power, Amazon, and Towngas.</li>
-                    </ul>
+                    <p style="margin-top: 1.5rem; font-weight: 600;">Academic & External Secretary — 12/10/2025 – 01/04/2026</p>
+                        <li>Responsible for the correspondence of the Union and external executive duties.</li>
+                        <li>Managed all academic affairs of the Union, ensuring clear communication and alignment across student-led initiatives.</li>
+                    <div class="project-tags">
+                        <a class="project-tag" href="https://esu.su.hkust.edu.hk/index.html" target="_blank" rel="noopener noreferrer">Website</a>
+                        <a class="project-tag" href="https://www.instagram.com/esu_hkustsu/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </div>
                 </div>
                 <div id="detail-mentor" class="detail-panel">
                     <h3>Dean of Student’s Office, HKUST — Union Mentor</h3>
@@ -818,6 +852,9 @@
                         <li>Provided personalized coaching and developmental oversight for executive committees of The Engineering Students’ Union, identifying individual challenges and delivering tailored guidance to support personal growth.</li>
                         <li>Collaborated with the Leadership Advancement Program for Student Organizations to facilitate event planning and logistics, ensuring the successful execution of campus-wide leadership initiatives.</li>
                     </ul>
+                    <div class="project-tags">
+                        <a class="project-tag" href="https://www.instagram.com/hkust_dstossa/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -847,6 +884,10 @@
             const panels = document.querySelectorAll('#detail-panels .detail-panel');
             panels.forEach(panel => panel.classList.remove('active'));
             updateDetailButtons('');
+            const section = document.getElementById('experience');
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         }
 
         document.querySelectorAll('.detail-panel').forEach(panel => {
