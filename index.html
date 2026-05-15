@@ -220,6 +220,26 @@
             z-index: 1;
         }
 
+        .hero-highlights {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.75rem;
+            margin-top: 1.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-highlight {
+            background: rgba(0, 113, 227, 0.1);
+            color: var(--color-text);
+            border: 1px solid rgba(0, 113, 227, 0.18);
+            border-radius: 999px;
+            padding: 0.8rem 1.15rem;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
         .resume-bubble {
             display: inline-flex;
             align-items: center;
@@ -940,8 +960,12 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1>WONG Man Chun</h1>
-        <p class="hero-subtitle">Industrial Engineering & Decision Analytics @ HKUST</p>
-        <p class="hero-copy">Leveraging Data Engineering and Mathematical Optimization to solve complex supply chain challenges.</p>
+        <p class="hero-subtitle">Industrial Engineering Graduate @ HKUST</p>
+        <p class="hero-copy">Driving efficiency in supply chain, healthcare, and strategic operations through Python, decision science, and mathematical optimization.</p>
+        <div class="hero-actions">
+            <a href="resume.pdf" class="cta-button" target="_blank" rel="noopener noreferrer">Download Resume</a>
+            <a href="#contact" class="cta-button" style="background: white; color: var(--color-accent);">Let's Connect</a>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -950,24 +974,27 @@
             <h2>About Me</h2>
             <div class="about-content">
                 <div class="about-text">
-                    <h3>Welcome</h3>
-                    <p>I am a dedicated student with a passion for solving complex problems through technology and innovation. My academic journey has been focused on optimization and forecasting.</p>
-                    <p>I combine theoretical knowledge with practical skills to create impactful projects that demonstrate both technical excellence and creative problem-solving.</p>
+                    <h3>Technical Analyst & Optimization Builder</h3>
+                    <p>HKUST IEEM student with a track record of building data-driven solutions for healthcare scheduling, supply chain logistics, and recruitment analytics.</p>
+                    <p>I specialize in taking raw data through rigorous preprocessing, model tuning, and operational deployment recommendations. My work emphasizes measurable business impact, model explainability, and cost-aware decision making.</p>
                     <div class="skills">
                         <span class="skill-tag">Python</span>
-                        <span class="skill-tag">Website Development</span>
-                        <span class="skill-tag">Data Analysis</span>
-                        <span class="skill-tag">Data Visualization</span>
-                        <span class="skill-tag">Prediction Model Building</span>
+                        <span class="skill-tag">Pandas</span>
+                        <span class="skill-tag">Scikit-learn</span>
+                        <span class="skill-tag">LightGBM</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">OR-Tools</span>
+                        <span class="skill-tag">Optimization</span>
+                        <span class="skill-tag">Causal Inference</span>
+                        <span class="skill-tag">SHAP</span>
                     </div>
                 </div>
                 <div class="about-text">
-                    <h3>Education & Experience</h3>
+                    <h3>Education & Focus</h3>
                     <p><strong>Hong Kong University of Science and Technology</strong></p>
-                    <p>Program: BEng in Industrial Engineering and Engineering Management (IEEM) <br>
-                    Graduation Year: 2026<br>
-                    <p>Throughout my studies, I've developed expertise in data analytics, data processing, collaborative project management, and predictive model building.</p>
-                    <p>Relevant Coursework: E-Commerce Technology and Applications, Service Engineering and Management, System Simulation, Data Driving Supply Chain Management, Online Markets, Casual Inference.</p>
+                    <p>BEng in Industrial Engineering and Engineering Management | Class of 2026</p>
+                    <p>Relevant coursework includes Service Engineering & Management, System Simulation, Data-Driven Supply Chain Management, Online Markets, Causal Inference, and E-Commerce Technology.</p>
+                    <p>Current focus: predictive analytics, cost-aware machine learning, and operational optimization for supply chain and healthcare domains.</p>
                 </div>
             </div>
         </div>
@@ -1051,9 +1078,9 @@
                 <div id="detail-pwc" class="detail-panel">
                     <h3>PricewaterhouseCoopers — Campus Recruitment Winter Intern</h3>
                     <ul>
-                        <li>Spearheaded the end-to-end execution of the Assurance Apprenticeship Program 2024; developed structured proposals to connect candidates with industry experts, facilitating early career development and securing a pipeline for future Assurance interns.</li>
-                        <li>Optimized recruitment data management for 1,600+ candidates using Workday and Excel; ensured data integrity and streamlined the tracking of applicant progress through the high-volume recruitment funnel.</li>
-                        <li>Facilitated operational logistics for high-profile campus initiatives; managed resource distribution and event flow for the PwC Leap Program and the HKU Career Fair 2024 to strengthen employer branding on campus.</li>
+                        <li>Managed recruitment analytics for 1,600+ candidates using Workday and Excel, improving data quality and enabling faster stakeholder reporting for campus hiring decisions.</li>
+                        <li>Built structured pipelines for candidate tracking, status reconciliation, and event registration across multiple internship streams.</li>
+                        <li>Supported the delivery of employer branding and candidate engagement initiatives at the PwC Leap Program and HKU Career Fair 2024.</li>
                     </ul>
                 </div>
                 <div id="detail-rene" class="detail-panel">
@@ -1067,9 +1094,9 @@
                 <div id="detail-hkcareers" class="detail-panel">
                     <h3>HKCareers Asia Quant Academy — Part-time Marketing Intern</h3>
                     <ul>
-                        <li>Developed educational materials for a quantitative trading academy covering financial modelling, Python, Pandas, NumPy, algorithmic trading, and back testing techniques.</li>
-                        <li>Analysed historical market data to identify significant downturns and growth trends over the past decade; presented key findings to enhance understanding of market dynamics.</li>
-                        <li>Researched and evaluated over 10 master's course materials, papers, and online programs in one week to ensure accurate and comprehensive course content for quant trading.</li>
+                        <li>Created Python-based learning content and data visualizations for quant trading topics, including Pandas workflows, backtesting, and market analytics.</li>
+                        <li>Analyzed historical financial data to identify downturn patterns and growth drivers, supporting course development with evidence-based insights.</li>
+                        <li>Reviewed and synthesized quantitative curriculum material to maintain technical accuracy and relevance for prospective learners.</li>
                     </ul>
                 </div>
                 <div id="detail-hkustsu" class="detail-panel">
@@ -1475,12 +1502,13 @@
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
-            <h2>Get In Touch</h2>
-            <p>I'm open to collaborations and exciting opportunities. Feel free to reach out!</p>
+            <h2>Let's Connect</h2>
+            <p>Seeking data analytics, optimization, or supply chain technology roles. Available for full-time positions in Hong Kong.</p>
             <div class="contact-info">
                 <a href="mailto:matthew20041120@gmail.com">Email</a>
-                <a href="https://linkedin.com/in/matthew-wmc" target="_blank">LinkedIn</a>
-                <a href="https://github.com/Moon3111" target="_blank">GitHub</a>
+                <a href="https://linkedin.com/in/matthew-wmc" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://github.com/Moon3111" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume PDF</a>
             </div>
         </div>
     </section>

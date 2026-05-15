@@ -13,18 +13,39 @@
 
         <header>
             <h1>Final Year Project: Surgery Duration Prediction</h1>
-            <p>Predicting surgical case duration at United Christian Hospital using a hybrid ML + NLP pipeline, focused on reducing day-of-surgery cancellations through better scheduling.</p>
- 
+            <p>Predicting surgical case duration at United Christian Hospital using a hybrid ML + NLP pipeline to support more reliable operating room scheduling and fewer day-of-surgery disruptions.</p>
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h3>Target Outcome</h3>
+                    <p>Reduce schedule variance and support safer daily planning across surgical theaters.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Model Quality</h3>
+                    <p>Achieved MAE 28.95 minutes and R² 0.691 on holdout evaluation.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Data Scope</h3>
+                    <p>Processed 14,834 surgical cases with structured records and free-text procedure notes.</p>
+                </div>
+            </div>
+            <div class="project-tags" style="margin-top: 1.5rem; justify-content: center; gap: 0.75rem; display: flex; flex-wrap: wrap;">
+                <span class="project-tag">Python</span>
+                <span class="project-tag">Pandas</span>
+                <span class="project-tag">LightGBM</span>
+                <span class="project-tag">Ensemble Stacking</span>
+                <span class="project-tag">Optuna</span>
+                <span class="project-tag">SHAP</span>
+            </div>
         </header>
 
         <section class="section" id="abstract">
             <h2>Abstract</h2>
-            <p>Final Year Project, Improve Healthcare Operation in Hong Kong </p>
-            <p>Development of Surgery Duration Prediction Model for United Christian Hospital</p>
+            <p>Final year project focused on healthcare operations and predictive analytics for HKUST and UCH.</p>
+            <p>Developed a surgery duration prediction system that combines structured patient and procedure data with NLP-derived text features.</p>
             <ul>
-                <li>Architected a hybrid feature engineering pipeline utilizing Byte-Pair Encoding (BPE) for unstructured clinical text tokenization. Enhanced model accuracy by integrating structured data with cyclical encoding to capture temporal periodicity, while optimizing feature dimensionality through strategic One-Hot Encoding of categorical variables.</li>
-                <li>Systematically benchmarked 20+ algorithms using the Optuna framework to execute Bayesian hyperparameter optimization and architected an Out-of-Fold (OOF) Ensemble Stacking model using a 5-fold cross-validation framework to integrate diverse base learners, utilizing a meta-learner to achieve a superior 30% improvement in Mean Absolute Error (MAE) with 28.95 minutes.</li>
-                <li>Validated stacking system integrity through residual diagnostics (Shapiro-Wilk and Durbin-Watson) and robustness testing via Gaussian noise injection. Leveraged SHAP-based interpretability to identify architectural weaknesses and quantify feature dependencies, resulting in a stable model with a 21% improvement with 0.691 R2 and low overfitting index.</li>
+                <li>Designed a hybrid feature engineering pipeline using Byte-Pair Encoding (BPE) for clinical text and cyclic encoding for time features, while managing dimensionality with targeted one-hot encoding.</li>
+                <li>Benchmarked 20+ models with Optuna-powered hyperparameter search and built a robust out-of-fold stacking ensemble that reduced MAE by roughly 30% versus baseline models.</li>
+                <li>Validated model reliability with diagnostic tests and Gaussian noise robustness checks, and used SHAP explainability to surface key drivers and support trustworthy clinical adoption.</li>
             </ul>
         </section>
 
@@ -140,7 +161,7 @@ stable_df['proc_bpe_ids'] = procedure_tokens
             <p>The model architecture combines single-model development with a proper stacking ensemble. The pipeline begins with a tuned LightGBM baseline, then blends multiple learners through out-of-fold predictions and an ElasticNet meta-learner.</p>
 
             <h3>Single model development</h3>
-            <p>After Completed a systematical selection of 20 different models, LightGBM is selected as the main baseline model. Training uses a log-transformed target and duration-weighted sample weights to handle skewed surgery duration values while preserving minute-level prediction accuracy.</p>
+            <p>After systematically evaluating 20+ candidate models, LightGBM was selected as the primary baseline. Training used a log-transformed target and duration-weighted sample weights to handle skewed procedure lengths while preserving minute-level accuracy.</p>
             <pre class="code-block"><code>LIGHTGBM_PARAMS = {
     'n_estimators': 2943,
     'learning_rate': 0.00933,
@@ -225,12 +246,13 @@ meta_model.fit(X_meta, y_train)
 
         <section class="section" id="evaluation">
             <h2>Evaluation & Impact</h2>
-            <p>The final model achieved MAE below 30 minutes, a training-testing R² gap of 0.029, and a stable prediction profile that meets clinical reliability requirements.</p>
+            <p>The final model achieved MAE below 30 minutes with strong holdout stability, providing a more actionable scheduling signal for operating room planners.</p>
             <ul>
                 <li>MAE: 28.95 minutes</li>
                 <li>R²: 0.691</li>
-                <li>R² training-testing gap: 0.016</li>
+                <li>Training-testing R² gap: 0.016</li>
             </ul>
+            <p>These results support improved OT planning, capacity management, and more reliable case sequences for complex surgical workflows.</p>
         </section>
 
         <a class="back-link" href="index.html">← Back to Portfolio</a>
