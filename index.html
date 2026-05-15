@@ -270,6 +270,35 @@
             font-size: 1rem;
         }
 
+        /* Final Year Project report bubble */
+        .report-bubble {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 0.9rem;
+            border-radius: 999px;
+            background: rgba(79, 185, 111, 0.12);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(79, 185, 111, 0.22);
+            transition: var(--transition);
+        }
+
+        .report-bubble::before {
+            content: '📄';
+            display: inline-block;
+            font-size: 0.95rem;
+        }
+
+        .report-bubble:hover {
+            background: #4fb96f;
+            color: white;
+            transform: translateY(-2px);
+            border-color: transparent;
+        }
+
         /* Sections */
         section {
             padding: 8rem 0;
@@ -1234,7 +1263,7 @@
                         </div>
                         <div class="project-body">
                             <p>Built a healthcare scheduling model using surgery records, NLP on procedure descriptions, and ensemble learning to reduce cancellations.</p>
-                                <div class="project-tags">
+                                    <div class="project-tags">
                                     <span class="project-tag">Python</span>
                                     <span class="project-tag">Pandas</span>
                                     <span class="project-tag">LightGBM</span>
@@ -1242,7 +1271,8 @@
                                     <span class="project-tag">SHAP</span>
                                     <span class="project-tag">Ensemble Learning</span>
                                 </div>
-                            <a href="project-final-year-surgery-scheduling.html" class="project-link">View Project →</a>
+                                <a href="project-final-year-surgery-scheduling.html#report" class="report-bubble" title="Open Final Year Project report">Final Year Project Report</a>
+                                <a href="project-final-year-surgery-scheduling.html" class="project-link">View Project →</a>
                         </div>
                     </div>
                     <div class="project-card">
