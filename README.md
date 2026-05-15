@@ -1,63 +1,62 @@
 # wongmanchun.github.io
 
-## Portfolio Website Overview
+## Overview
 
-This repository contains a static portfolio website for WONG Man Chun, showcasing academic and technical projects, professional experience, leadership roles, certifications, and contact information.
+Static portfolio site for WONG Man Chun showcasing technical projects, professional experience, leadership roles, and certifications. The site emphasizes data analytics, optimization, and supply chain engineering projects crafted during undergraduate studies.
 
-The site is built with plain HTML, CSS, and minimal JavaScript to keep the experience fast, accessible, and easy to maintain.
+## What changed recently
 
-## Key Features
+- Standardized project pages to a consistent structure: Problem → Approach → Tech stack → Results → Impact.
+- Synchronized project tag ribbons on the homepage with each detailed project page for clearer recruiter context.
+- Added shared `.project-tag` styling in `styles.css` and improved CTAs on the homepage.
 
-- Responsive single-page home page with a hero section, skills, experience, leadership, project previews, certifications, and contact links.
-- Dedicated project pages for detailed case studies, including:
-  - Final Year Project — surgery duration prediction
-  - Cost-Aware Feature Selection
-  - Airline Financial Strategy analysis
-  - E-Commerce Data Analysis
-  - Vehicle Routing & Zone Optimization
-  - Auction inference project for learning agents
-  - RGGI manufacturing causal analysis
-  - Tesla supply chain analysis
-- Consistent visual styling via a shared `styles.css` file.
-- Recruiter-friendly content structure focusing on problem, approach, tools, results, and impact.
-- Simple interactive detail panels for experience items on the home page.
+## Key Files
 
-## Technology Stack
+- `index.html` — homepage with project previews and interactive experience panels
+- `styles.css` — shared stylesheet for pages
+- `project-*.html` — detailed project pages
+- `resume.pdf` — downloadable resume linked from the site
 
-- HTML5
-- CSS3
-- Vanilla JavaScript for small interactions
+## Tech Stack
+
+- HTML5, CSS3
+- Vanilla JavaScript for small interactive components
 - Google Fonts (Inter)
 
-## Workspace Structure
+## How to run locally
 
-- `index.html` — main portfolio homepage
-- `styles.css` — shared styles for homepage and project pages
-- `resume.pdf` — downloadable resume linked from the site
-- `project-*.html` — dedicated project detail pages
-- `README.md` — repository documentation
+Open `index.html` directly in your browser, or run a minimal server in the repository root:
 
-## Development Notes
+```bash
+python -m http.server 8000
+# then open http://localhost:8000
+```
 
-- The homepage and project pages share a clean, modern style with soft accent colors, rounded cards, and accessible typography.
-- Project pages were standardized to include a strong header, metrics, tags, and a clear methodology/impact narrative.
-- Contact and CTA elements were updated to be more action-oriented for tech and analytics hiring audiences.
-- The design avoids heavy frameworks, making deployment straightforward via GitHub Pages or any static hosting provider.
+## Deployment
 
-## How to View Locally
+The site is static — deploy on GitHub Pages, Netlify, or any static host. For GitHub Pages, push this repo to a GitHub account and enable Pages in repository settings (branch: `main` or `gh-pages`).
 
-1. Open `index.html` in your browser.
-2. If you prefer a local web server, use a simple static server in your project folder:
-   - Python 3: `python -m http.server 8000`
-   - Then open `http://localhost:8000`
+## Contributing
 
-## Recommended Improvements
+Small content or styling fixes are welcome. Suggested workflow:
 
-- Add project screenshots or demo links to strengthen visual storytelling.
-- Host the site on a custom personal domain for a more polished professional brand.
-- Consider adding a lightweight build process if the site grows (e.g. using a static site generator or component-based setup).
+1. Fork the repository
+2. Create a feature branch
+3. Make edits and test locally
+4. Open a pull request with a clear summary of changes
 
-## Notes
+If you want me to add screenshots, GitHub repo links on each project page, or a custom domain setup guide, request the step and I’ll scaffold it.
 
-This repository is optimized for clarity, recruiter readability, and a strong technical narrative aligned with data analytics, optimization, and supply chain roles.
+## Suggested next steps
+
+- Add project screenshots (`/assets/screenshots/`) and reference them from project cards to improve visual storytelling.
+- Add a `projects.json` manifest if you plan to programmatically build project lists or migrate to a static site generator.
+
+## Contact
+
+Email: matthew20041120@gmail.com
+LinkedIn: https://linkedin.com/in/matthew-wmc
+
+---
+_Generated edits: synchronized tags and standardized project pages on May 16, 2026._
 
