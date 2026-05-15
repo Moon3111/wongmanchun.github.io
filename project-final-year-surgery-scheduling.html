@@ -314,7 +314,7 @@ stable_df['proc_bpe_ids'] = procedure_tokens
             <p>The model architecture combines single-model development with a proper stacking ensemble. The pipeline begins with a tuned LightGBM baseline, then blends multiple learners through out-of-fold predictions and an ElasticNet meta-learner.</p>
 
             <h3>Single model development</h3>
-            <p>LightGBM is the main baseline model. Training uses a log-transformed target and duration-weighted sample weights to handle skewed surgery duration values while preserving minute-level prediction accuracy.</p>
+            <p>After Completed a systematical selection of 20 different models, LightGBM is selected as the main baseline model. Training uses a log-transformed target and duration-weighted sample weights to handle skewed surgery duration values while preserving minute-level prediction accuracy.</p>
             <pre class="code-block"><code>LIGHTGBM_PARAMS = {
     'n_estimators': 2943,
     'learning_rate': 0.00933,
@@ -402,8 +402,8 @@ meta_model.fit(X_meta, y_train)
             <p>The final model achieved MAE below 30 minutes, a training-testing R² gap of 0.029, and a stable prediction profile that meets clinical reliability requirements.</p>
             <ul>
                 <li>MAE: 28.95 minutes</li>
-                <li>R²: 0.683</li>
-                <li>R² training-testing gap: 0.029</li>
+                <li>R²: 0.691</li>
+                <li>R² training-testing gap: 0.016</li>
             </ul>
         </section>
 
