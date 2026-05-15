@@ -183,6 +183,7 @@
 </head>
 <body>
     <div class="container">
+
         <header>
             <h1>Final Year Project: Surgery Duration Prediction</h1>
             <p>Predicting surgical case duration at United Christian Hospital using a hybrid ML + NLP pipeline, focused on reducing day-of-surgery cancellations through better scheduling.</p>
@@ -194,6 +195,17 @@
                 <span class="badge">Surgery Scheduling</span>
             </div>
         </header>
+
+        <section class="section" id="abstract">
+            <h2>Abstract</h2>
+            <p>Final Year Project, Improve Healthcare Operation in Hong Kong 		 01/09/2025 – 10/05/2026</p>
+            <p>Development of Surgery Duration Prediction Model for United Christian Hospital</p>
+            <ul>
+                <li>Architected a hybrid feature engineering pipeline utilizing Byte-Pair Encoding (BPE) for unstructured clinical text tokenization. Enhanced model accuracy by integrating structured data with cyclical encoding to capture temporal periodicity, while optimizing feature dimensionality through strategic One-Hot Encoding of categorical variables.</li>
+                <li>Systematically benchmarked 20+ algorithms using the Optuna framework to execute Bayesian hyperparameter optimization and architected an Out-of-Fold (OOF) Ensemble Stacking model using a 5-fold cross-validation framework to integrate diverse base learners, utilizing a meta-learner to achieve a superior 30% improvement in Mean Absolute Error (MAE) with 28.95 minutes.</li>
+                <li>Validated stacking system integrity through residual diagnostics (Shapiro-Wilk and Durbin-Watson) and robustness testing via Gaussian noise injection. Leveraged SHAP-based interpretability to identify architectural weaknesses and quantify feature dependencies, resulting in a stable model with a 21% improvement with 0.691 R2 and low overfitting index.</li>
+            </ul>
+        </section>
 
         <nav class="section-nav">
             <a href="#data-quality">Data Quality</a>
