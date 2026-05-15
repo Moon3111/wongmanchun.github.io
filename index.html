@@ -269,6 +269,34 @@
             color: #764ba2;
         }
 
+        .project-highlight-row {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .projects-scroll-wrap {
+            flex: 1;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .project-card.fixed-card {
+            flex: 0 0 320px;
+            min-width: 320px;
+        }
+
+        @media (max-width: 1024px) {
+            .project-highlight-row {
+                flex-direction: column;
+            }
+
+            .project-card.fixed-card {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+
         /* Contact Section */
         .contact {
             background-color: white;
@@ -416,111 +444,8 @@
     <section class="projects" id="projects">
         <div class="container">
             <h2>Academic Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Cost-Aware Feature Selection</h3>
-                        <p style="opacity: 0.9; margin: 0;">Machine learning model design with cost-sensitive feature choice</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Developed a cost-effective feature selection framework by extending L1-SVM into a MILP formulation, balancing classification performance and feature acquisition cost.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">SVM</span>
-                            <span class="project-tag">MILP</span>
-                            <span class="project-tag">Feature Selection</span>
-                        </div>
-                        <a href="project-cost-effective-feature-selection.html" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Airline Financial Strategy</h3>
-                        <p style="opacity: 0.9; margin: 0;">Revenue analysis, forecasting, and risk assessment for an aviation leader</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Analyzed business performance, financial ratios, and future cash flows to recommend strategic improvements for airline revenue and resilience.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Financial Modeling</span>
-                            <span class="project-tag">Forecasting</span>
-                            <span class="project-tag">Risk Analysis</span>
-                        </div>
-                        <a href="project-cathay-pacific-analysis.html" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>E-Commerce Data Analysis</h3>
-                        <p style="opacity: 0.9; margin: 0;">Web scraping, data cleaning, and visualization for product sales insights</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Collected and analyzed Amazon product data to identify which factors, beyond price, affect sales and customer engagement.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Web Scraping</span>
-                            <span class="project-tag">Data Visualization</span>
-                            <span class="project-tag">Python</span>
-                        </div>
-                        <a href="project-ecommerce-data-analysis.html" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Vehicle Routing & Zone Optimization</h3>
-                        <p style="opacity: 0.9; margin: 0;">Logistics optimization using clustering, TSP solving, and parallel processing</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Designed optimal delivery zones for 30 customer sites across 5 weekdays to minimize total travel distance and routing costs.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Optimization</span>
-                            <span class="project-tag">OR-Tools</span>
-                            <span class="project-tag">Clustering</span>
-                        </div>
-                        <a href="project-vehicle-routing-optimization.html" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Tesla Supply Chain Analysis</h3>
-                        <p style="opacity: 0.9; margin: 0;">Strategic analysis of EV manufacturer's supply chain resilience and optimization</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Analyzed Tesla's global supply chain, focusing on inventory management, risk mitigation, and strategic recommendations for operational excellence.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Supply Chain</span>
-                            <span class="project-tag">Risk Analysis</span>
-                            <span class="project-tag">Strategic Planning</span>
-                        </div>
-                        <a href="project-tesla-supply-chain-analysis.html" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>RGGI Manufacturing Causal Analysis</h3>
-                        <p style="opacity: 0.9; margin: 0;">Geographic RDD + DiD study of RGGI's impact on manufacturing employment</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Investigated whether the 2009 RGGI carbon tax caused manufacturing job or factory relocation from RGGI border counties to neighboring non-RGGI counties.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Causal Inference</span>
-                            <span class="project-tag">Difference-in-Differences</span>
-                            <span class="project-tag">Geographic RDD</span>
-                        </div>
-                        <a href="project-rggi-manufacturing-causal-analysis.html" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <!-- Project 7 -->
-                <div class="project-card final-year">
+            <div class="project-highlight-row">
+                <div class="project-card fixed-card final-year">
                     <div class="project-header">
                         <h3>Final Year Surgery Scheduling</h3>
                         <p style="opacity: 0.9; margin: 0;">A green-highlighted final year project with clickable parts for data prep, feature engineering, model stacking, and evaluation.</p>
@@ -536,20 +461,126 @@
                     </div>
                 </div>
 
-                <!-- Project 8 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Inference for Learning Agents</h3>
-                        <p style="opacity: 0.9; margin: 0;">Value inference from bids in quality-weighted first-price auctions</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Simulated no-regret bidders to recover private values, then evaluated inference quality and the impact of inferred reserve pricing on auction revenue.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Auction Design</span>
-                            <span class="project-tag">No-Regret Learning</span>
-                            <span class="project-tag">Inference</span>
+                <div class="projects-scroll-wrap">
+                    <div class="projects-grid">
+                        <!-- Project 1 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Cost-Aware Feature Selection</h3>
+                                <p style="opacity: 0.9; margin: 0;">Machine learning model design with cost-sensitive feature choice</p>
+                            </div>
+                            <div class="project-body">
+                                <p>Developed a cost-effective feature selection framework by extending L1-SVM into a MILP formulation, balancing classification performance and feature acquisition cost.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">SVM</span>
+                                    <span class="project-tag">MILP</span>
+                                    <span class="project-tag">Feature Selection</span>
+                                </div>
+                                <a href="project-cost-effective-feature-selection.html" class="project-link">View Project →</a>
+                            </div>
                         </div>
-                        <a href="project-ieda-4000c-inference.html" class="project-link">View Project →</a>
+
+                        <!-- Project 2 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Airline Financial Strategy</h3>
+                                <p style="opacity: 0.9; margin: 0;">Revenue analysis, forecasting, and risk assessment for an aviation leader</p>
+                            </div>
+                            <div class="project-body">
+                                <p>Analyzed business performance, financial ratios, and future cash flows to recommend strategic improvements for airline revenue and resilience.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Financial Modeling</span>
+                                    <span class="project-tag">Forecasting</span>
+                                    <span class="project-tag">Risk Analysis</span>
+                                </div>
+                                <a href="project-cathay-pacific-analysis.html" class="project-link">View Project →</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 3 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>E-Commerce Data Analysis</h3>
+                                <p style="opacity: 0.9; margin: 0;">Web scraping, data cleaning, and visualization for product sales insights</p>
+                            </div>
+                            <div class="project-body">
+                                <p>Collected and analyzed Amazon product data to identify which factors, beyond price, affect sales and customer engagement.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Web Scraping</span>
+                                    <span class="project-tag">Data Visualization</span>
+                                    <span class="project-tag">Python</span>
+                                </div>
+                                <a href="project-ecommerce-data-analysis.html" class="project-link">View Project →</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 4 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Vehicle Routing & Zone Optimization</h3>
+                                <p style="opacity: 0.9; margin: 0;">Logistics optimization using clustering, TSP solving, and parallel processing</p>
+                            </div>
+                            <div class="project-body">
+                                <p>Designed optimal delivery zones for 30 customer sites across 5 weekdays to minimize total travel distance and routing costs.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Optimization</span>
+                                    <span class="project-tag">OR-Tools</span>
+                                    <span class="project-tag">Clustering</span>
+                                </div>
+                                <a href="project-vehicle-routing-optimization.html" class="project-link">View Project →</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 5 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Tesla Supply Chain Analysis</h3>
+                                <p style="opacity: 0.9; margin: 0;">Strategic analysis of EV manufacturer's supply chain resilience and optimization</p>
+                            </div>
+                            <div class="project-body">
+                                <p>Analyzed Tesla's global supply chain, focusing on inventory management, risk mitigation, and strategic recommendations for operational excellence.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Supply Chain</span>
+                                    <span class="project-tag">Risk Analysis</span>
+                                    <span class="project-tag">Strategic Planning</span>
+                                </div>
+                                <a href="project-tesla-supply-chain-analysis.html" class="project-link">View Project →</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 6 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>RGGI Manufacturing Causal Analysis</h3>
+                                <p style="opacity: 0.9; margin: 0;">Geographic RDD + DiD study of RGGI's impact on manufacturing employment</p>
+                            </div>
+                            <div class="project-body">
+                                <p>Investigated whether the 2009 RGGI carbon tax caused manufacturing job or factory relocation from RGGI border counties to neighboring non-RGGI counties.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Causal Inference</span>
+                                    <span class="project-tag">Difference-in-Differences</span>
+                                    <span class="project-tag">Geographic RDD</span>
+                                </div>
+                                <a href="project-rggi-manufacturing-causal-analysis.html" class="project-link">View Project →</a>
+                            </div>
+                        </div>
+
+                        <!-- Project 8 -->
+                        <div class="project-card">
+                            <div class="project-header">
+                                <h3>Inference for Learning Agents</h3>
+                                <p style="opacity: 0.9; margin: 0;">Value inference from bids in quality-weighted first-price auctions</p>
+                            </div>
+                            <div class="project-body">
+                                <p>Simulated no-regret bidders to recover private values, then evaluated inference quality and the impact of inferred reserve pricing on auction revenue.</p>
+                                <div class="project-tags">
+                                    <span class="project-tag">Auction Design</span>
+                                    <span class="project-tag">No-Regret Learning</span>
+                                    <span class="project-tag">Inference</span>
+                                </div>
+                                <a href="project-ieda-4000c-inference.html" class="project-link">View Project →</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
