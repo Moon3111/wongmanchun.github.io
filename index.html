@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Personal portfolio showcasing academic projects and professional work">
     <title>WONG Man Chun - Academic Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -28,7 +31,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
             line-height: 1.6;
             color: var(--color-text);
             background-color: #ffffff;
@@ -55,9 +58,10 @@
 
         nav ul {
             display: flex;
+            align-items: center;
             justify-content: center;
             list-style: none;
-            gap: 2.5rem;
+            gap: 2rem;
             width: 100%;
             padding: 0 2rem;
         }
@@ -66,10 +70,31 @@
             text-decoration: none;
             color: var(--color-text);
             font-size: 0.95rem;
-            font-weight: 400;
+            font-weight: 500;
             letter-spacing: -0.3px;
             transition: var(--transition);
             position: relative;
+        }
+
+        nav li.nav-button {
+            margin-left: auto;
+        }
+
+        nav li.nav-button a {
+            padding: 0.65rem 1rem;
+            border-radius: 999px;
+            background: rgba(0, 113, 227, 0.12);
+            border: 1px solid rgba(0, 113, 227, 0.2);
+            color: var(--color-accent);
+        }
+
+        nav li.nav-button a:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        nav li.nav-button a::after {
+            display: none;
         }
 
         nav a::after {
@@ -136,9 +161,28 @@
             font-size: clamp(1rem, 3vw, 1.25rem);
             color: var(--color-text-secondary);
             max-width: 600px;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
             font-weight: 400;
-            line-height: 1.5;
+            line-height: 1.6;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+            color: var(--color-accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-copy {
+            max-width: 620px;
+            margin: 0 auto 2rem;
+            font-size: clamp(1rem, 2vw, 1.1rem);
+            color: var(--color-text-secondary);
+            line-height: 1.8;
             position: relative;
             z-index: 1;
         }
@@ -201,14 +245,14 @@
         }
 
         .resume-bubble::before {
-            content: '⬇';
+            content: '↗';
             display: inline-block;
             font-size: 1rem;
         }
 
         /* Sections */
         section {
-            padding: 6rem 0;
+            padding: 8rem 0;
             border-bottom: 1px solid var(--color-border);
             scroll-margin-top: 90px;
         }
@@ -887,6 +931,7 @@
             <li><a href="#projects">Projects</a></li>
             <li><a href="#certificates">Certificates</a></li>
             <li><a href="#contact">Contact</a></li>
+            <li class="nav-button"><a href="resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
         </ul>
     </nav>
 
@@ -894,11 +939,12 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1>WONG Man Chun Matthew</h1>
-        <p>Passionate about building innovative solutions through academic research and practical projects</p>
+        <h1>WONG Man Chun</h1>
+        <p class="hero-subtitle">Industrial Engineering & Decision Analytics @ HKUST</p>
+        <p class="hero-copy">Specializing in data cleaning & preprocessing, optimization, and quantitative problem-solving.</p>
         <div class="hero-actions">
             <a href="#projects" class="cta-button">View My Work</a>
-            <a href="resume.pdf" class="resume-bubble" download aria-label="Download resume">Download Resume</a>
+            <a href="resume.pdf" class="resume-bubble" target="_blank" rel="noopener noreferrer" aria-label="Open resume in a new tab">View Resume</a>
         </div>
     </section>
 
