@@ -170,6 +170,7 @@
         section {
             padding: 6rem 0;
             border-bottom: 1px solid var(--color-border);
+            scroll-margin-top: 90px;
         }
 
         section:last-child {
@@ -252,6 +253,7 @@
             padding: 2.5rem;
             border: 1px solid var(--color-border);
             transition: var(--transition);
+            scroll-margin-top: 90px;
         }
 
         .split-section:hover {
@@ -459,10 +461,33 @@
             border-radius: 16px;
             box-shadow: var(--shadow-md);
             animation: slideIn 0.3s ease-out;
+            position: relative;
         }
 
         .detail-panel.active {
             display: block;
+        }
+
+        .detail-close {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.65rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 999px;
+            background: white;
+            color: var(--color-text);
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        .detail-close:hover {
+            background: var(--color-accent);
+            color: white;
+            border-color: var(--color-accent);
         }
 
         @keyframes slideIn {
@@ -627,6 +652,7 @@
 
         @media (max-width: 480px) {
             nav {
+                position: relative;
                 height: auto;
             }
 
@@ -637,7 +663,7 @@
             }
 
             body {
-                padding-top: auto;
+                padding-top: 0;
             }
 
             .hero {
@@ -657,7 +683,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav>
+    <nav aria-label="Primary navigation">
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -668,6 +694,8 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
+
+    <main>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -718,7 +746,7 @@
                                     <p style="opacity: 0.9; margin: 0;">Campus Recruitment Winter Intern<br>20/12/2023 – 07/02/2024</p>
                                 </div>
                                 <div class="project-body">
-                                    <button class="detail-button" onclick="showDetail('detail-pwc')">View Detail →</button>
+                                    <button class="detail-button" aria-controls="detail-pwc" aria-expanded="false" onclick="showDetail('detail-pwc')">View Detail →</button>
                                 </div>
                             </div>
                             <div class="project-card">
@@ -727,24 +755,24 @@
                                     <p style="opacity: 0.9; margin: 0;">Summer Intern<br>02/07/2024 – 30/08/2024</p>
                                 </div>
                                 <div class="project-body">
-                                    <button class="detail-button" onclick="showDetail('detail-rene')">View Detail →</button>
+                                    <button class="detail-button" aria-controls="detail-rene" aria-expanded="false" onclick="showDetail('detail-rene')">View Detail →</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="split-section" id="leadership-list">
+                <div class="split-section" id="leadership">
                     <h2>Leadership Enrichment</h2>
                     <div class="split-scroll-wrap">
                         <div class="split-card-grid">
                             <div class="project-card">
                                 <div class="project-header">
                                     <h3>The Engineering Students’ Union, HKUSTSU</h3>
-                                    <p style="opacity: 0.9; margin: 0;">President<br>01/04/2023 - 01/04/2024</p>
+                                    <p style="opacity: 0.9; margin: 0;">President<br>01/04/2023</p>
                                 </div>
                                 <div class="project-body">
-                                    <button class="detail-button" onclick="showDetail('detail-hkustsu')">View Detail →</button>
+                                    <button class="detail-button" aria-controls="detail-hkustsu" aria-expanded="false" onclick="showDetail('detail-hkustsu')">View Detail →</button>
                                 </div>
                             </div>
                             <div class="project-card">
@@ -753,7 +781,7 @@
                                     <p style="opacity: 0.9; margin: 0;">Union Mentor<br>19/04/2024 – 01/06/2026</p>
                                 </div>
                                 <div class="project-body">
-                                    <button class="detail-button" onclick="showDetail('detail-mentor')">View Detail →</button>
+                                    <button class="detail-button" aria-controls="detail-mentor" aria-expanded="false" onclick="showDetail('detail-mentor')">View Detail →</button>
                                 </div>
                             </div>
                         </div>
@@ -796,15 +824,39 @@
     </section>
 
     <script>
+        function updateDetailButtons(activePanelId) {
+            const buttons = document.querySelectorAll('.detail-button');
+            buttons.forEach(button => {
+                const target = button.getAttribute('aria-controls');
+                button.setAttribute('aria-expanded', target === activePanelId ? 'true' : 'false');
+            });
+        }
+
         function showDetail(panelId) {
             const panels = document.querySelectorAll('#detail-panels .detail-panel');
             panels.forEach(panel => panel.classList.remove('active'));
             const target = document.getElementById(panelId);
+            updateDetailButtons(panelId);
             if (target) {
                 target.classList.add('active');
                 target.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
         }
+
+        function hideDetails() {
+            const panels = document.querySelectorAll('#detail-panels .detail-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            updateDetailButtons('');
+        }
+
+        document.querySelectorAll('.detail-panel').forEach(panel => {
+            const closeButton = document.createElement('button');
+            closeButton.type = 'button';
+            closeButton.className = 'detail-close';
+            closeButton.textContent = 'Close details';
+            closeButton.addEventListener('click', hideDetails);
+            panel.insertBefore(closeButton, panel.firstChild);
+        });
     </script>
 
     <!-- Projects Section -->
