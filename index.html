@@ -286,6 +286,128 @@
             min-width: 320px;
         }
 
+        .split-sections-wrapper {
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .split-section {
+            flex: 1 1 48%;
+            min-width: 320px;
+            background-color: white;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+        }
+
+        .split-section h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .split-scroll-wrap {
+            overflow-x: auto;
+            padding-bottom: 0.75rem;
+        }
+
+        .split-card-grid {
+            display: flex;
+            gap: 1.5rem;
+            min-height: 100%;
+        }
+
+        .project-card.card-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .project-card.card-link:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 22px rgba(0,0,0,0.16);
+        }
+
+        .detail-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: none;
+            color: #667eea;
+            cursor: pointer;
+            font-weight: 600;
+            padding: 0;
+            margin-top: 1rem;
+            text-decoration: none;
+        }
+
+        .detail-button:hover {
+            color: #764ba2;
+        }
+
+        .detail-panel {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+        }
+
+        .detail-panel.active {
+            display: block;
+        }
+
+        .detail-panel h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .detail-title {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .detail-panel ul {
+            list-style: disc inside;
+            margin-top: 0.5rem;
+        }
+
+        .detail-panel li {
+            margin-bottom: 0.8rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+
+        .split-scroll-wrap::-webkit-scrollbar,
+        .projects-grid::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .split-scroll-wrap::-webkit-scrollbar-track,
+        .projects-grid::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .split-scroll-wrap::-webkit-scrollbar-thumb,
+        .projects-grid::-webkit-scrollbar-thumb {
+            background: #667eea;
+            border-radius: 4px;
+        }
+
+        .split-scroll-wrap::-webkit-scrollbar-thumb:hover,
+        .projects-grid::-webkit-scrollbar-thumb:hover {
+            background: #764ba2;
+        }
+
         @media (max-width: 1024px) {
             .project-highlight-row {
                 flex-direction: column;
@@ -293,6 +415,14 @@
 
             .project-card.fixed-card {
                 min-width: auto;
+                width: 100%;
+            }
+
+            .split-sections-wrapper {
+                flex-direction: column;
+            }
+
+            .split-section {
                 width: 100%;
             }
         }
@@ -360,6 +490,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#leadership">Leadership</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -403,42 +534,105 @@
     <!-- Experience Section -->
     <section class="projects" id="experience">
         <div class="container">
-            <h2>Experience & Leadership Enrichment</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Professional Experience</h3>
-                        <p style="opacity: 0.9; margin: 0;">Company / Role / Period</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Describe your professional experience here. Include the organization, your role, and the main responsibilities or achievements that demonstrate your skills.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Team Collaboration</span>
-                            <span class="project-tag">Process Improvement</span>
-                            <span class="project-tag">Project Delivery</span>
+            <div class="split-sections-wrapper">
+                <div class="split-section" id="experience-list">
+                    <h2>Professional Experience</h2>
+                    <div class="split-scroll-wrap">
+                        <div class="split-card-grid">
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <h3>PricewaterhouseCoopers</h3>
+                                    <p style="opacity: 0.9; margin: 0;">Campus Recruitment Winter Intern — 20/12/2023 – 07/02/2024</p>
+                                </div>
+                                <div class="project-body">
+                                    <button class="detail-button" onclick="showDetail('detail-pwc')">View Detail →</button>
+                                </div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <h3>Rene Hout & Co. Solicitors & Notaries</h3>
+                                    <p style="opacity: 0.9; margin: 0;">Summer Intern — 02/07/2024 – 30/08/2024</p>
+                                </div>
+                                <div class="project-body">
+                                    <button class="detail-button" onclick="showDetail('detail-rene')">View Detail →</button>
+                                </div>
+                            </div>
                         </div>
-                        <a href="#contact" class="project-link">Contact for details →</a>
                     </div>
                 </div>
 
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Leadership Enrichment</h3>
-                        <p style="opacity: 0.9; margin: 0;">Roles / Activities / Impact</p>
-                    </div>
-                    <div class="project-body">
-                        <p>Highlight your leadership experience, such as mentoring, leading teams, organizing events, or participating in student leadership programs.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Mentoring</span>
-                            <span class="project-tag">Event Planning</span>
-                            <span class="project-tag">Communication</span>
+                <div class="split-section" id="leadership-list">
+                    <h2>Leadership Enrichment</h2>
+                    <div class="split-scroll-wrap">
+                        <div class="split-card-grid">
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <h3>The Engineering Students’ Union, HKUSTSU</h3>
+                                    <p style="opacity: 0.9; margin: 0;">President — 01/04/2023</p>
+                                </div>
+                                <div class="project-body">
+                                    <button class="detail-button" onclick="showDetail('detail-hkustsu')">View Detail →</button>
+                                </div>
+                            </div>
+                            <div class="project-card">
+                                <div class="project-header">
+                                    <h3>Dean of Student’s Office, HKUST</h3>
+                                    <p style="opacity: 0.9; margin: 0;">Union Mentor — 19/04/2024 – 01/06/2026</p>
+                                </div>
+                                <div class="project-body">
+                                    <button class="detail-button" onclick="showDetail('detail-mentor')">View Detail →</button>
+                                </div>
+                            </div>
                         </div>
-                        <a href="#contact" class="project-link">Learn more →</a>
                     </div>
+                </div>
+            </div>
+            <div id="detail-panels">
+                <div id="detail-pwc" class="detail-panel">
+                    <h3>PricewaterhouseCoopers — Campus Recruitment Winter Intern</h3>
+                    <ul>
+                        <li>Spearheaded the end-to-end execution of the Assurance Apprenticeship Program 2024; developed structured proposals to connect candidates with industry experts, facilitating early career development and securing a pipeline for future Assurance interns.</li>
+                        <li>Optimized recruitment data management for 1,600+ candidates using Workday and Excel; ensured data integrity and streamlined the tracking of applicant progress through the high-volume recruitment funnel.</li>
+                        <li>Facilitated operational logistics for high-profile campus initiatives; managed resource distribution and event flow for the PwC Leap Program and the HKU Career Fair 2024 to strengthen employer branding on campus.</li>
+                    </ul>
+                </div>
+                <div id="detail-rene" class="detail-panel">
+                    <h3>Rene Hout & Co. Solicitors & Notaries — Summer Intern</h3>
+                    <ul>
+                        <li>Executed comprehensive land and company searches and registered conveyancing documents with the Land Registry; ensured 100% compliance with statutory legal standards and internal quality controls.</li>
+                        <li>Conducted 3 on-site inspections to verify property conditions and assess physical assets, contributing to the due diligence process for conveyancing and real estate transactions.</li>
+                        <li>Supported legal proceedings by attending court hearings and managing the filing of formal documents, demonstrating a practical understanding of Hong Kong judicial procedures and legal protocols.</li>
+                    </ul>
+                </div>
+                <div id="detail-hkustsu" class="detail-panel">
+                    <h3>The Engineering Students’ Union, HKUSTSU — President</h3>
+                    <ul>
+                        <li>Directed an executive committee of 11 members by implementing a structured division of labor and streamlined internal communication protocols; orchestrated large-scale campus initiatives to enhance student engagement and professional development opportunities for 500+ engineering students.</li>
+                        <li>Executed a strategic corporate outreach campaign, successfully pitching and securing sponsorships or participation from 50+ industry leaders, including CLP Power, Amazon, and Towngas.</li>
+                    </ul>
+                </div>
+                <div id="detail-mentor" class="detail-panel">
+                    <h3>Dean of Student’s Office, HKUST — Union Mentor</h3>
+                    <ul>
+                        <li>Provided personalized coaching and developmental oversight for executive committees of The Engineering Students’ Union, identifying individual challenges and delivering tailored guidance to support personal growth.</li>
+                        <li>Collaborated with the Leadership Advancement Program for Student Organizations to facilitate event planning and logistics, ensuring the successful execution of campus-wide leadership initiatives.</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function showDetail(panelId) {
+            const panels = document.querySelectorAll('.detail-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+            const target = document.getElementById(panelId);
+            if (target) {
+                target.classList.add('active');
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+    </script>
 
     <!-- Projects Section -->
     <section class="projects" id="projects">
