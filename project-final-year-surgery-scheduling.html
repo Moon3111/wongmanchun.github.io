@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Final Year Project — Surgery Duration Prediction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.7;
+            color: #333;
+            background-color: #f4f9f2;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2d8f57 0%, #4fb96f 100%);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        header p {
+            font-size: 1.05rem;
+            max-width: 760px;
+            opacity: 0.95;
+        }
+
+        .badge-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+
+        .badge {
+            background-color: rgba(255,255,255,0.18);
+            padding: 0.55rem 0.9rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255,255,255,0.25);
+        }
+
+        .section-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-nav a {
+            display: inline-flex;
+            padding: 0.75rem 1rem;
+            border-radius: 999px;
+            background-color: rgba(46, 125, 75, 0.12);
+            color: #225d39;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(46,125,75,0.18);
+        }
+
+        .section-nav a:hover {
+            background-color: rgba(46, 125, 75, 0.2);
+        }
+
+        .section {
+            background-color: white;
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+        }
+
+        .section h2 {
+            font-size: 1.9rem;
+            color: #1f5d33;
+            margin-bottom: 1rem;
+        }
+
+        .section p,
+        .section ul,
+        .section li {
+            font-size: 1rem;
+            color: #4a4a4a;
+            margin-bottom: 1rem;
+        }
+
+        .section ul {
+            list-style: disc inside;
+            gap: 0.5rem;
+        }
+
+        .section li {
+            margin-bottom: 0.75rem;
+        }
+
+        .code-block,
+        pre {
+            background: #e8f6ec;
+            border: 1px solid #cde9d6;
+            border-radius: 14px;
+            padding: 1rem;
+            overflow-x: auto;
+            font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+            color: #184d2a;
+            margin-bottom: 1rem;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .metric-box {
+            background-color: #f0fbf4;
+            border: 1px solid #cde9d6;
+            border-radius: 14px;
+            padding: 1rem;
+        }
+
+        .metric-box h3 {
+            margin-bottom: 0.5rem;
+            color: #225d39;
+            font-size: 1.05rem;
+        }
+
+        .metric-box p {
+            font-size: 0.95rem;
+            color: #4a4a4a;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #2d8f57;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            color: #1f5d33;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #666;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 2rem 1rem;
+            }
+
+            .container {
+                padding: 1rem;
+            }
+
+            .section-nav {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Final Year Project: Surgery Duration Prediction</h1>
+            <p>Predicting surgical case duration at United Christian Hospital using a hybrid ML + NLP pipeline, focused on reducing day-of-surgery cancellations through better scheduling.</p>
+            <div class="badge-row">
+                <span class="badge">Healthcare Analytics</span>
+                <span class="badge">NLP</span>
+                <span class="badge">LightGBM</span>
+                <span class="badge">Ensemble Stacking</span>
+                <span class="badge">Surgery Scheduling</span>
+            </div>
+        </header>
+
+        <nav class="section-nav">
+            <a href="#data-quality">Data Quality</a>
+            <a href="#feature-engineering">Feature Engineering</a>
+            <a href="#model-design">Model Design</a>
+            <a href="#evaluation">Evaluation</a>
+        </nav>
+
+        <section class="section" id="data-quality">
+            <h2>Data Quality & Preprocessing</h2>
+            <p>This part of the project is the foundation. It transforms noisy hospital records and unstructured surgeon notes into a reliable feature set for prediction.</p>
+
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h3>Records</h3>
+                    <p>14,834 surgical records processed with structured and unstructured fields.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Missing Data Rules</h3>
+                    <p>Columns with more than 40% missing values were dropped, and targeted imputation preserved clinical context.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Text Preprocessing</h3>
+                    <p>Byte-Pair Encoding was applied to surgeon descriptions to convert text into numeric vectors.</p>
+                </div>
+            </div>
+
+            <p>The preprocessing pipeline has three main stages:</p>
+            <ul>
+                <li>Data quality validation and duplicate removal.</li>
+                <li>Missing-value treatment by feature type and clinically informed imputation.</li>
+                <li>Feature transformation, including categorical encoding, cyclic time encoding, and text vectorization.</li>
+            </ul>
+
+            <h3>Critical preprocessing code</h3>
+            <pre class="code-block"><code>import pandas as pd
+import numpy as np
+from sklearn.preprocessing import OneHotEncoder
+from sentencepiece import SentencePieceProcessor
+
+# Load data
+raw_df = pd.read_csv('surgery_data.csv')
+
+# Remove exact duplicates and invalid rows
+raw_df = raw_df.drop_duplicates()
+raw_df = raw_df[raw_df['duration_minutes'].notna()]
+
+# Drop low-quality columns
+missing_ratio = raw_df.isna().mean()
+keep_columns = missing_ratio[missing_ratio <= 0.40].index.tolist()
+df = raw_df[keep_columns].copy()
+
+# Impute critical clinical features
+impute_map = {
+    'anaesthesia_type': 'unknown',
+    'team_surgeon': 'missing',
+    'procedure_description': 'not available',
+}
+for col, filler in impute_map.items():
+    if col in df.columns:
+        df[col] = df[col].fillna(filler)
+
+# Standardize text fields
+text_cols = ['procedure_description', 'surgeon_notes']
+for col in text_cols:
+    df[col] = (
+        df[col].astype(str)
+             .str.lower()
+             .str.replace(r"[^a-z0-9 ]", ' ', regex=True)
+             .str.replace(r"\s+", ' ', regex=True)
+             .str.strip()
+    )
+</code></pre>
+
+            <h3>Feature preparation</h3>
+            <p>We separate the full preprocess into a stable dataset and a precision dataset. The stable dataset preserves all rows with single-value imputation, while the precision dataset drops rows with remaining data issues.</p>
+            <pre class="code-block"><code>def encode_cyclic(df, col, max_value):
+    df[f'{col}_sin'] = np.sin(2 * np.pi * df[col] / max_value)
+    df[f'{col}_cos'] = np.cos(2 * np.pi * df[col] / max_value)
+    return df
+
+if 'scheduled_month' in df.columns:
+    df = encode_cyclic(df, 'scheduled_month', 12)
+if 'scheduled_weekday' in df.columns:
+    df = encode_cyclic(df, 'scheduled_weekday', 7)
+
+# Build the stable dataset and high-precision dataset
+stable_df = df.fillna({'charge_code': 'unknown', 'priority': 'standard'})
+precision_df = df.dropna()
+</code></pre>
+
+            <h3>Text vectorization with BPE</h3>
+            <p>Byte-Pair Encoding converts surgeon descriptions and procedure notes into compact numeric representations that preserve medical phrase structure.</p>
+            <pre class="code-block"><code>sp = SentencePieceProcessor(model_file='bpe_model.model')
+
+def bpe_encode_text(series):
+    return np.array([sp.encode_as_ids(text) for text in series], dtype=object)
+
+procedure_tokens = bpe_encode_text(stable_df['procedure_description'])
+stable_df['proc_bpe_ids'] = procedure_tokens
+</code></pre>
+
+            <p>For modeling, the token sequences were aggregated into count-based or embedding-based features, such as token density, rare-term presence, and average token index.</p>
+        </section>
+
+        <section class="section" id="feature-engineering">
+            <h2>Feature Engineering</h2>
+            <p>Next we transform clinical and textual inputs into predictive features, including surgeon-level signals, procedure complexity flags, and text-derived quality metrics.</p>
+            <ul>
+                <li>Encoded procedure codes and site-specific metadata.</li>
+                <li>Generated interaction terms between surgeon seniority and case urgency.</li>
+                <li>Created text features such as BPE token counts, clinical keyword flags, and phrase density.</li>
+            </ul>
+        </section>
+
+        <section class="section" id="model-design">
+            <h2>Model Design & Stacking</h2>
+            <p>The model architecture combines single-model development with a proper stacking ensemble. The pipeline begins with a tuned LightGBM baseline, then blends multiple learners through out-of-fold predictions and an ElasticNet meta-learner.</p>
+
+            <h3>Single model development</h3>
+            <p>LightGBM is the main baseline model. Training uses a log-transformed target and duration-weighted sample weights to handle skewed surgery duration values while preserving minute-level prediction accuracy.</p>
+            <pre class="code-block"><code>LIGHTGBM_PARAMS = {
+    'n_estimators': 2943,
+    'learning_rate': 0.00933,
+    'num_leaves': 26,
+    'max_depth': 8,
+    'subsample': 0.80137,
+    'colsample_bytree': 0.41317,
+    'reg_alpha': 2.17194,
+    'reg_lambda': 8.68397,
+    'random_state': 42,
+    'n_jobs': -1,
+    'verbose': -1,
+}
+
+def fit_predict(params, X_train, y_train, X_test, sample_weights):
+    model = lgb.LGBMRegressor(**params)
+    y_train_log = np.log1p(y_train)
+    model.fit(X_train, y_train_log, sample_weight=sample_weights)
+    y_tr_pred = np.expm1(model.predict(X_train))
+    y_te_pred = np.expm1(model.predict(X_test))
+    return model, y_tr_pred, y_te_pred
+</code></pre>
+
+            <h3>Stacking ensemble development</h3>
+            <p>The stacking pipeline builds out-of-fold predictions for each base learner and trains a meta-learner on those predictions. This avoids leakage and improves generalization by learning how to combine diverse model outputs.</p>
+            <pre class="code-block"><code>oof_predictions = {m: np.zeros(len(y_train)) for m in MODEL_NAMES}
+test_predictions = {m: np.zeros((len(y_test), cv_folds)) for m in MODEL_NAMES}
+
+for model_name in MODEL_NAMES:
+    model = make_model(model_name, BASE_MODELS[model_name])
+    model.fit(X_tr, y_tr_target)
+    oof_pred = model.predict(X_val)
+    if model_name == 'LightGBM':
+        oof_pred = np.expm1(oof_pred)
+    oof_predictions[model_name][val_idx] = oof_pred
+
+X_meta = np.column_stack([oof_predictions[m] for m in MODEL_NAMES])
+meta_model = ElasticNet(**tuned_meta_params, random_state=42)
+meta_model.fit(X_meta, y_train)
+</code></pre>
+
+            <p>The final ensemble uses LightGBM and a regression tree as base learners, while the meta-learner assigns optimal blending weights to reduce prediction error.</p>
+
+            <h3>Hyperparameter tuning</h3>
+            <p>Optuna optimizes model quality while punishing excessive generalization gaps and poor test performance. The custom objective combines MAE, RMSE, R², and model stability into a single penalty score.</p>
+            <pre class="code-block"><code>def penalty_objective(y_train, y_test, y_tr_pred, y_te_pred):
+    mae_te = mean_absolute_error(y_test, y_te_pred)
+    r2_tr = r2_score(y_train, y_tr_pred)
+    r2_te = r2_score(y_test, y_te_pred)
+    gap = abs(r2_tr - r2_te)
+
+    penalty = 0.0
+    if mae_te > 28.0:
+        penalty += (mae_te - 28.0) * 1000
+    elif mae_te > 29.0:
+        penalty += (mae_te - 29.0) * 50
+
+    if gap > 0.05:
+        penalty += (gap - 0.05) * 10000
+
+    if r2_te < 0.80:
+        penalty += (0.80 - r2_te) * 1000
+
+    return mae_te + penalty
+</code></pre>
+
+            <div class="metric-grid">
+                <div class="metric-box">
+                    <h3>Baseline MAE</h3>
+                    <p>LightGBM baseline guided tuning toward a 28-minute MAE target.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Stacking R²</h3>
+                    <p>The stacking model improves stability by combining OOF predictions from multiple learners.</p>
+                </div>
+                <div class="metric-box">
+                    <h3>Meta-Learner</h3>
+                    <p>ElasticNet was selected as the final meta-learner for transparent weight estimation and regularized blending.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="evaluation">
+            <h2>Evaluation & Impact</h2>
+            <p>The final model achieved MAE below 30 minutes, a training-testing R² gap of 0.029, and a stable prediction profile that meets clinical reliability requirements.</p>
+            <ul>
+                <li>MAE: 28.95 minutes</li>
+                <li>R²: 0.683</li>
+                <li>R² training-testing gap: 0.029</li>
+            </ul>
+        </section>
+
+        <a class="back-link" href="index.html">← Back to Portfolio</a>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 WONG Man Chun</p>
+    </footer>
+</body>
+</html>
