@@ -166,6 +166,46 @@
             transform: translateY(-2px);
         }
 
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .resume-bubble {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.55rem;
+            padding: 0.9rem 1.2rem;
+            border-radius: 999px;
+            background: rgba(0, 113, 227, 0.12);
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: 1px solid rgba(0, 113, 227, 0.25);
+            box-shadow: 0 8px 22px rgba(0, 113, 227, 0.08);
+        }
+
+        .resume-bubble:hover {
+            background: var(--color-accent);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        .resume-bubble::before {
+            content: '⬇';
+            display: inline-block;
+            font-size: 1rem;
+        }
+
         /* Sections */
         section {
             padding: 6rem 0;
@@ -856,7 +896,10 @@
     <section class="hero" id="home">
         <h1>WONG Man Chun Matthew</h1>
         <p>Passionate about building innovative solutions through academic research and practical projects</p>
-        <a href="#projects" class="cta-button">View My Work</a>
+        <div class="hero-actions">
+            <a href="#projects" class="cta-button">View My Work</a>
+            <a href="resume.pdf" class="resume-bubble" download aria-label="Download resume">Download Resume</a>
+        </div>
     </section>
 
     <!-- About Section -->
